@@ -17,7 +17,7 @@ class WorkerScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            'schedule' => fake()->randomElement(['morning', 'evening'])
+            'shift' => fake()->randomElement(['morning', 'evening'])
         ];
     }
 }

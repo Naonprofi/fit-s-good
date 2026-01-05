@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CustContactSeeder::class,
             CustDataSeeder::class,
-            CustMembershipController::class,
+            CustMembershipSeeder::class,
             CustomerSeeder::class,
             ReservationSeeder::class,
             UserSeeder::class,
