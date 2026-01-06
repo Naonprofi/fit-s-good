@@ -10,53 +10,53 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom px-3">
+
+            <!-- Bal oldali logó -->
+            <a class="navbar-brand" href="#">FIT'S GOOD</a>
+
+            <!-- Hamburger -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+
+            <!-- Menü -->
+            <div class="collapse navbar-collapse" id="mainMenu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <!-- Dropdown különállóan, nem a SIGN UP mellett -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Dropdown
+                            Menü
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Menü</a></li>
+                            <li><a class="dropdown-item" href="#">Asztalfoglalás</a></li>
+                            <li><a class="dropdown-item" href="#">Nyitvatartás</a></li>
+                            <li><a class="dropdown-item" href="#">Premium</a></li>
+                            <li><a class="dropdown-item" href="#">Étrendek / Receptek</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
+
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
+                <!-- SIGN UP külön jobbra -->
+                <a href="#" class="signup-btn">SIGN UP</a>
+
             </div>
-        </div>
-    </nav>
 
-    @yield('mainContent')
+        </nav>
 
-    <footer>
-        <p>alma</p>
-    </footer>
+        @yield('mainContent')
+
+        <footer>
+            <p>alma</p>
+        </footer>
+    </div>
 </body>
 
 </html>

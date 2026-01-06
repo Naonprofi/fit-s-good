@@ -1,10 +1,58 @@
-@import 'tailwindcss';
+/* @import 'tailwindcss'; */
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-/* SAJÁT STÍLUSOK EZ ALÁ */
-body {
-    background-color: #578fc7;
+body{
+    background-color: rgb(193, 202, 202);
 }
+
+.navbar-custom {
+    background-color: #8b5a2b;
+    /* barna */
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    background-color: #704421;
+    border-radius: 6px;
+}
+
+.dropdown-menu {
+    background-color: #8b5a2b;
+    border: none;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+.dropdown-item:hover {
+    background-color: #704421;
+}
+
+.signup-btn {
+    background-color: white;
+    color: #8b5a2b !important;
+    font-weight: bold;
+    padding: 6px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.signup-btn:hover {
+    background-color: #f2e6d9;
+}
+
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
