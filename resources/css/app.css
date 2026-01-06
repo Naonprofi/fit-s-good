@@ -1,4 +1,10 @@
 @import 'tailwindcss';
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* SAJÁT STÍLUSOK EZ ALÁ */
+body {
+    background-color: #578fc7;
+}
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
