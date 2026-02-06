@@ -25,3 +25,6 @@ Route::resource('/worker', WorkerController::class);
 Route::resource('/worker-data', WorkerDataController::class);
 Route::resource('/worker-job', WorkerJobTitleController::class);
 Route::resource('/worker-schedule', WorkerScheduleController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
