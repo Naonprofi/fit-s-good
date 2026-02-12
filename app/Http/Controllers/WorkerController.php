@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Worker;
 use App\Http\Requests\StoreWorkerRequest;
 use App\Http\Requests\UpdateWorkerRequest;
-
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+#[UsePolicy(WorkerPolicy::class)]
 class WorkerController extends Controller
 {
     /**

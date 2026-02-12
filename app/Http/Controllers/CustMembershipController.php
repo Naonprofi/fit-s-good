@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CustMembership;
 use App\Http\Requests\StoreCustMembershipRequest;
 use App\Http\Requests\UpdateCustMembershipRequest;
-
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+#[UsePolicy(CustMembershipPolicy::class)]
 class CustMembershipController extends Controller
 {
     /**

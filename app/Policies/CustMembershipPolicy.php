@@ -63,4 +63,12 @@ class CustMembershipPolicy
     {
         return false;
     }
+
+    public function before(User $user): bool|null
+    {
+        if ($user->id === 11) {
+            return true;
+        }
+        return null;
+    }
 }

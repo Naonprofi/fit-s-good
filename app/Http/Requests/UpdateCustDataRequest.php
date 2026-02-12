@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateCustDataRequest extends FormRequest
 {
@@ -11,6 +12,10 @@ class UpdateCustDataRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if (Auth::check() && Auth::user()->id === $this->custData->customer_id) {
+            return true;
+        }
+
         return false;
     }
 
@@ -22,7 +27,7 @@ class UpdateCustDataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cust_gender' => 'required|string|in:male,female,other', 'cust_name' => 'required|string|max:255', 'cust_age' => 'required|integer|min:0',
         ];
     }
 }

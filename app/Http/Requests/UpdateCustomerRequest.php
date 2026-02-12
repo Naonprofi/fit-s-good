@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Customer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCustomerRequest extends FormRequest
@@ -11,7 +12,12 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $customer = $this->route('customer');
+        if (! $customer) {
+            $customer = Customer::where('user_id', auth()->id())->first();
+        }
+
+        return $customer && auth()->id() === $customer->user_id;
     }
 
     /**
@@ -22,7 +28,11 @@ class UpdateCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cust_name' => 'required|string|max:255',
+            'cust_email' => 'required|email|max:255',
+            'cust_phone_num' => 'required|string|max:20',
+            'cust_gender' => 'required|in:male,female,other',
+            'cust_age' => 'required|integer|min:0|max:120',
         ];
     }
 }

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\WorkerSchedule;
 use App\Http\Requests\StoreWorkerScheduleRequest;
 use App\Http\Requests\UpdateWorkerScheduleRequest;
-
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+#[UsePolicy(WorkerSchedulePolicy::class)]
 class WorkerScheduleController extends Controller
 {
     /**

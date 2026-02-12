@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCustMembershipRequest extends FormRequest
@@ -11,6 +12,10 @@ class UpdateCustMembershipRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if (Auth::check() && Auth::user()->id === $this->custMembership->customer_id) {
+            return true;
+        }
+
         return false;
     }
 
@@ -22,7 +27,7 @@ class UpdateCustMembershipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type' => 'required|string|in:none,basic,premium',
         ];
     }
 }

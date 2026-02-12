@@ -13,6 +13,6 @@ class WorkerJobTitleSeeder extends Seeder
      */
     public function run(): void
     {
-        WorkerJobTitle::factory(10)->create();
+
     }
 }

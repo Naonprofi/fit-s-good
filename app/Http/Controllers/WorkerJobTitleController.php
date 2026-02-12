@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\WorkerJobTitle;
 use App\Http\Requests\StoreWorkerJobTitleRequest;
 use App\Http\Requests\UpdateWorkerJobTitleRequest;
-
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+#[UsePolicy(WorkerJobTitlePolicy::class)]
 class WorkerJobTitleController extends Controller
 {
     /**

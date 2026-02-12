@@ -21,10 +21,7 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            'cust_data_id'     => CustData::factory(),
-            'cust_contact_id'  => CustContact::factory(),
-            'membership_id'   => CustMembership::factory(),
-            'user_id' => User::factory()
+            
         ];
     }
 }

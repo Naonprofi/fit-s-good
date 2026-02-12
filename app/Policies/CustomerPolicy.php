@@ -21,7 +21,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer): bool
     {
-        return false;
+        if ($user->id === $customer->user_id) { return true; } return false;
     }
 
     /**
@@ -37,7 +37,7 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer): bool
     {
-        return false;
+        if ($user->id === $customer->user_id) { return true; } return false;
     }
 
     /**
@@ -62,5 +62,13 @@ class CustomerPolicy
     public function forceDelete(User $user, Customer $customer): bool
     {
         return false;
+    }
+
+    public function before(User $user): bool|null
+    {
+        if ($user->id === 11) {
+            return true;
+        }
+        return null;
     }
 }

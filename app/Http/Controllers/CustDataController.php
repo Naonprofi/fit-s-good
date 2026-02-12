@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CustData;
 use App\Http\Requests\StoreCustDataRequest;
 use App\Http\Requests\UpdateCustDataRequest;
-
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+#[UsePolicy(CustDataPolicy::class)]
 class CustDataController extends Controller
 {
     /**

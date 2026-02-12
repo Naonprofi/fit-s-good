@@ -13,6 +13,6 @@ class CustContactSeeder extends Seeder
      */
     public function run(): void
     {
-        CustContact::factory(10)->create();
+        
     }
 }

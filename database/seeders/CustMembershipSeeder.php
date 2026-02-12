@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\CustMembership;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CustMembershipSeeder extends Seeder
@@ -13,6 +12,6 @@ class CustMembershipSeeder extends Seeder
      */
     public function run(): void
     {
-        CustMembership::factory(10)->create();
+        
     }
 }

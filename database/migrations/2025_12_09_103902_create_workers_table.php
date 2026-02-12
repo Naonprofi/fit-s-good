@@ -17,12 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('worker_contact_id');
             $table->unsignedBigInteger('schedule_id');
             $table->unsignedBigInteger('job_title_id');
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('worker_data_id')->references('id')->on('worker_data')->cascadeOnDelete();
             $table->foreign('worker_contact_id')->references('id')->on('worker_contacts')->cascadeOnDelete();
             $table->foreign('schedule_id')->references('id')->on('worker_schedules')->cascadeOnDelete();
             $table->foreign('job_title_id')->references('id')->on('worker_job_titles')->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

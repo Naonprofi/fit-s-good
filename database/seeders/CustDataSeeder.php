@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\CustData;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CustDataSeeder extends Seeder
@@ -13,6 +12,6 @@ class CustDataSeeder extends Seeder
      */
     public function run(): void
     {
-        CustData::factory(10)->create();
+        
     }
 }

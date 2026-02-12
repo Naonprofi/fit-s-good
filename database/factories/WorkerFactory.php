@@ -21,12 +21,8 @@ class WorkerFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'worker_data_id'     => WorkerData::factory(),
-            'worker_contact_id'  => WorkerContact::factory(),
-            'schedule_id'   => WorkerSchedule::factory(),
-            'job_title_id'   => WorkerJobTitle::factory(),
-            'user_id' => User::factory()
+        return[
+
         ];
     }
 }

@@ -1,11 +1,48 @@
-@import 'tailwindcss';
+:root {
+    --sand: #f1da8c;
+    --big-font: 1.5rem;
+    --gap: 1rem;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+body {
+    background-color: whitesmoke;
+    margin: 0;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.navbar {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../public/images/navbar.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh;
+    display: flex !important;
+    flex-direction: column; /* Egymás alá rakja a menüt és a központi szöveget */
+    justify-content: center; /* Függőlegesen középre teszi a tartalmat */
+    align-items: center;    /* Vízszintesen középre teszi a tartalmat */
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+
+.navbar-brand, .nav-link, .welcome-text {
+    color: white !important;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Erősebb árnyék az olvashatóságért */
+}
+
+.welcome-text h1 {
+    font-size: 3.5rem; /* Nagy, hangsúlyos cím */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.welcome-text p {
+    font-size: 1.2rem;
+    max-width: 600px; /* Hogy ne nyúljon el a szöveg túl hosszan */
+}
+
+.right-nav {
+    position: absolute;
+    bottom: 20px;
+    right: 200px;
+    font-size: var(--big-font);
 }

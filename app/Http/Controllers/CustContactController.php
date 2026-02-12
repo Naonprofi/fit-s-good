@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustContact;
 use App\Http\Requests\StoreCustContactRequest;
 use App\Http\Requests\UpdateCustContactRequest;
+use App\Models\CustContact;
+use App\Policies\CustContactPolicy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+
+#[UsePolicy(CustContactPolicy::class)]
 
 class CustContactController extends Controller
 {
@@ -21,7 +25,9 @@ class CustContactController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', CustContact::class);
+
+        return view('customers.edit');
     }
 
     /**
@@ -29,7 +35,9 @@ class CustContactController extends Controller
      */
     public function store(StoreCustContactRequest $request)
     {
-        //
+        CustContact::create($request->all());
+
+        return redirect()->route('home');
     }
 
     /**
@@ -45,7 +53,7 @@ class CustContactController extends Controller
      */
     public function edit(CustContact $custContact)
     {
-        //
+        return view("customers.edit", ["custContact" => $custContact]);
     }
 
     /**
@@ -53,7 +61,9 @@ class CustContactController extends Controller
      */
     public function update(UpdateCustContactRequest $request, CustContact $custContact)
     {
-        //
+        $custContact->update($request->all());
+
+        return redirect()->route("home");
     }
 
     /**

@@ -13,6 +13,6 @@ class WorkerScheduleSeeder extends Seeder
      */
     public function run(): void
     {
-        WorkerSchedule::factory(10)->create();
+
     }
 }

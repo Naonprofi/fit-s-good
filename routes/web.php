@@ -28,3 +28,6 @@ Route::resource('/worker-schedule', WorkerScheduleController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [CustomerController::class, 'show'])->name('profile');
+Route::get('/profile/edit', [CustomerController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update/{customer}', [CustomerController::class, 'update'])->name('profile.update');
