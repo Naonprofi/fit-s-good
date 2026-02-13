@@ -2,20 +2,19 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Container\Attributes\Auth;
+use App\Models\Food;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCustMembershipRequest extends FormRequest
+class StoreFoodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        if (Auth::check() && Auth::user()->id === $this->custMembership->customer_id) {
+        if (auth()->user()->can('create', Food::class)) {
             return true;
         }
-
         return false;
     }
 
@@ -27,7 +26,12 @@ class UpdateCustMembershipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|string|in:none,premium',
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'calories' => 'required|numeric|min:0',
+            'protein' => 'required|numeric|min:0',
+            'carbs' => 'required|numeric|min:0',
+            'fat' => 'required|numeric|min:0',
         ];
     }
 }

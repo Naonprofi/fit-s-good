@@ -14,30 +14,38 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 80vh;
-    display: flex !important;
-    flex-direction: column; /* Egymás alá rakja a menüt és a központi szöveget */
-    justify-content: center; /* Függőlegesen középre teszi a tartalmat */
-    align-items: center;    /* Vízszintesen középre teszi a tartalmat */
+    display: flex;
+    flex-direction: column;
+    /* Egymás alá rakja a menüt és a központi szöveget */
+    justify-content: center;
+    /* Függőlegesen középre teszi a tartalmat */
+    align-items: center;
+    /* Vízszintesen középre teszi a tartalmat */
     text-align: center;
     color: white;
     padding: 2rem;
 }
 
 
-.navbar-brand, .nav-link, .welcome-text {
-    color: white !important;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Erősebb árnyék az olvashatóságért */
+.navbar-brand,
+.nav-link,
+.welcome-text {
+    color: whitesmoke;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    /* Erősebb árnyék az olvashatóságért */
 }
 
 .welcome-text h1 {
-    font-size: 3.5rem; /* Nagy, hangsúlyos cím */
+    font-size: 3.5rem;
+    /* Nagy, hangsúlyos cím */
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
 .welcome-text p {
     font-size: 1.2rem;
-    max-width: 600px; /* Hogy ne nyúljon el a szöveg túl hosszan */
+    max-width: 600px;
+    /* Hogy ne nyúljon el a szöveg túl hosszan */
 }
 
 .right-nav {
@@ -45,4 +53,36 @@ body {
     bottom: 20px;
     right: 200px;
     font-size: var(--big-font);
+}
+
+/* Alapbeállítások a mobilhoz (Media Query) */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 1rem;
+        min-height: 100vh;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Ez teszi a címet függőlegesen középre */
+        align-items: center !important;     /* Ez teszi a címet vízszintesen középre */
+    }
+
+    .welcome-text h1 {
+        font-size: 2.2rem !important; /* Mobilon kicsit kisebb, hogy ne lógjon ki */
+        width: 100%;
+        margin: 0;
+    }
+
+    .welcome-text p {
+        font-size: 1rem !important;
+        max-width: 100%;
+        margin-top: 10px;
+    }
+
+    /* A név maradjon jobb alul, de igazítsuk a kis kijelzőhöz */
+    .right-nav {
+        position: absolute !important; 
+        bottom: 20px !important;
+        right: 20px !important; /* Mobilon nem kell a 200px, mert lemenne a képernyőről */
+        font-size: 1rem !important; /* Kicsit kisebb betű, hogy ne legyen tolakodó */
+    }
 }

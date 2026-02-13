@@ -1,0 +1,194 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    /* Wheat color */
+    background-color: rgb(20, 39, 29);
+}
+
+.food-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    transition: 0.3s ease;
+}
+
+.food-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.food-card img {
+    transition: 0.3s ease;
+    border-radius: 1rem;
+}
+
+.food-card:hover img {
+    filter: brightness(60%);
+}
+
+/* SZÖVEG KÖZÉPEN (vízszintesen + függőlegesen) */
+.food-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5%;
+    /* <-- EZT ÁLLÍTOD, ha feljebb/lejjebb akarod */
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: 0.3s ease;
+    text-align: center;
+    width: 80%;
+    pointer-events: none;
+}
+
+.food-card:hover .food-text {
+    opacity: 1;
+}
+
+
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    gap: 30px;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.menu-btn {
+    background-color: #0a460a;
+    /* fűzöld */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: rgb(236, 195, 119);
+    color: rgb(17, 69, 8);
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.hero-images {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-images img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.hero-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    line-height: 1.1;
+}
+
+/* STORY SECTION WRAPPER */
+.story {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* CÍM FELÜL KÖZÉPEN */
+.story-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+/* BAL OLDALI KÉP */
+.story img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+/* JOBB OLDALI SZÖVEG */
+.story-text {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    /* kicsit nagyobb */
+    line-height: 2.1;
+    /* függőlegesen széthúzva */
+    letter-spacing: 1px;
+    /* vízszintesen széthúzva */
+    max-width: 600px;
+}
+
+.story-text p {
+    margin-bottom: 22px;
+    /* extra levegő a bekezdések között */
+}
+
+@media (max-width: 768px) {
+
+    /* STORY LAYOUT */
+    .story {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* STORY TITLE */
+    .story-title {
+        font-size: 1.8rem;
+    }
+
+    /* STORY TEXT */
+    .story-text {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .story-text p {
+        margin: 0 auto;
+    }
+
+    /* HERO TITLE */
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    /* KÉP ALATTI EXTRA HELY */
+    .story-img img {
+        margin-bottom: 30px;
+    }
+
+    /* GOMB FÖLÖTT EXTRA HELY (ha a gomb a story-text-ben van) */
+    .story-text .btn,
+    .check-menu-section .btn {
+        margin-top: 25px;
+    }
+
+    img {
+        margin-bottom: 40px !important;
+    }
+
+    .btn {
+        margin-top: 30px !important;
+    }
+}

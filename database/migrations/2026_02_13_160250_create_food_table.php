@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cust_memberships', function (Blueprint $table) {
+        Schema::create('food', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['none', 'premium']);
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->decimal('calories', 8, 2)->default(0);
+            $table->decimal('protein', 8, 2)->default(0);
+            $table->decimal('carbs', 8, 2)->default(0);
+            $table->decimal('fat', 8, 2)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cust_memberships');
+        Schema::dropIfExists('food');
     }
 };

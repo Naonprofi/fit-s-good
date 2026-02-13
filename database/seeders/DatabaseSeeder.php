@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+    $this->call([
+        CategorySeeder::class,
+    ]);
             // --- 1. VÉLETLENSZERŰ CUSTOMEREK (10 db) ---
     for ($i = 0; $i < 10; $i++) {
         Customer::factory()
