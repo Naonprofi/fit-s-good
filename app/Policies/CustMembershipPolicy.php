@@ -64,11 +64,12 @@ class CustMembershipPolicy
         return false;
     }
 
-    public function before(User $user): bool|null
+    public function before(User $user, string $ability): ?bool
     {
-        if ($user->id === 11) {
-            return true;
+        if ($user->is_admin) {
+            return true; // Az adminnak mindent szabad
         }
-        return null;
+
+        return null; // Ha nem admin, megyünk tovább a konkrét metódusra
     }
 }

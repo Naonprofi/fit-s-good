@@ -34,7 +34,8 @@
                         <div class="navbar-nav me-auto">
                             <div class="welcome-text">
                                 <h1>Welcome to Fit's Good!</h1>
-                            <p>Your best friend in eating healthy without losing flavour. Track your macros and achieve your fitness goals with ease.</p>
+                                <p>Your best friend in eating healthy without losing flavour. Track your macros and
+                                    achieve your fitness goals with ease.</p>
                             </div>
                         </div>
                     </div>
@@ -61,12 +62,12 @@
                                     Dropdown
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Menu</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('menu') }}">Menu</a></li>
                                     <li><a class="dropdown-item" href="#">Another action</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Elérhetőségek</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('contacts') }}">Elérhetőségek</a></li>
                                 </ul>
                             </li>
                         @else
@@ -82,7 +83,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                 document.getElementById('logout-form').submit();">
+                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -94,21 +95,23 @@
                                         {{ __('Profile') }}
                                     </a>
                                 </div>
-                                <li class="nav-item dropdown">
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Actions
+
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Menu</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('menu') }}">Menu</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('reservations') }}">Reservations</a></li>
                                     <li><a class="dropdown-item" href="#">Membership</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Elérhetőségek</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('contacts') }}">Contacts</a></li>
                                 </ul>
                             </li>
-                            </li>
+
                         @endguest
                     </ul>
                 </div>

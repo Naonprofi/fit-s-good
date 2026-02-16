@@ -5,12 +5,14 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: darkslategrey;
     margin: 0;
 }
 
 .navbar {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../public/images/navbar.jpg");
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("../../public/images/navbar.jpg");
     background-size: cover;
     background-position: center;
     min-height: 80vh;
@@ -25,7 +27,6 @@ body {
     color: white;
     padding: 2rem;
 }
-
 
 .navbar-brand,
 .nav-link,
@@ -50,9 +51,29 @@ body {
 
 .right-nav {
     position: absolute;
+    gap: var(--gap);
     bottom: 20px;
     right: 200px;
     font-size: var(--big-font);
+}
+
+/* Felülbíráljuk a Bootstrap alapértelmezett sötét hover színét */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: whitesmoke; /* A sötét szín helyett a homok színt használjuk */
+    text-decoration: underline; /* Aláhúzás a jobb láthatóságért */
+    transition: 0.5s; /* Lágy átmenet */
+}
+
+/* Ha a Dropdown szövege is feketedik, azt is javítjuk */
+.dropdown-item:hover {
+    color: black;
+    text-decoration: solid underline;
+}
+
+/* Eltünteti a Bootstrap alapértelmezett legördülő nyilát */
+.dropdown-toggle::after {
+    display: none !important;
 }
 
 /* Alapbeállítások a mobilhoz (Media Query) */
@@ -63,7 +84,7 @@ body {
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important; /* Ez teszi a címet függőlegesen középre */
-        align-items: center !important;     /* Ez teszi a címet vízszintesen középre */
+        align-items: center !important; /* Ez teszi a címet vízszintesen középre */
     }
 
     .welcome-text h1 {
@@ -80,7 +101,7 @@ body {
 
     /* A név maradjon jobb alul, de igazítsuk a kis kijelzőhöz */
     .right-nav {
-        position: absolute !important; 
+        position: absolute !important;
         bottom: 20px !important;
         right: 20px !important; /* Mobilon nem kell a 200px, mert lemenne a képernyőről */
         font-size: 1rem !important; /* Kicsit kisebb betű, hogy ne legyen tolakodó */

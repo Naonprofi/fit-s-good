@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,9 +11,9 @@ class Worker extends Model
 {
     /** @use HasFactory<\Database\Factories\WorkerFactory> */
     use HasFactory;
-
     use SoftDeletes;
-
+    #[UsePolicy(WorkerPolicy::class)]
+    
     public function workerData()
     {
         return $this->belongsTo(WorkerData::class, 'worker_data_id');

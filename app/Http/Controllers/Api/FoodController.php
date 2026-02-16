@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFoodRequest;
 use App\Http\Requests\UpdateFoodRequest;
 use App\Models\Food;
-use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
@@ -16,8 +15,12 @@ class FoodController extends Controller
     public function index()
     {
         $foods = Food::all();
-        if (isset($foods) == false) {
-            return response()->json(["msg" => "there are no foods in the database"], 404);
+
+        // Az isEmpty() metódus nézi meg, hogy valóban üres-e a lista
+        if ($foods->isEmpty()) {
+            return response()->json([
+                'msg' => 'there are no foods in the database',
+            ], 404);
         }
 
         return response()->json($foods);
@@ -28,8 +31,15 @@ class FoodController extends Controller
      */
     public function store(StoreFoodRequest $request)
     {
-        Food::create($request->all());
-        return response()->json(["msg" => "{$request->name} was created succesfully"]);
+        // Ez fogja meghívni a Policy-t
+        $this->authorize('create', Food::class);
+
+        $food = Food::create($request->validated());
+
+        return response()->json([
+            'msg' => 'Created successfully',
+            'data' => $food,
+        ], 201);
     }
 
     /**
@@ -38,6 +48,7 @@ class FoodController extends Controller
     public function show(string $id)
     {
         $food = Food::findOrFail($id);
+
         return response()->json($food);
     }
 
@@ -48,7 +59,8 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id);
         $food->update($request->all());
-        return response()->json(["msg" => "{$food->name} was updated"]);
+
+        return response()->json(['msg' => "{$food->name} was updated"]);
     }
 
     /**
@@ -58,6 +70,7 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id);
         $food->delete();
-        return response()->json(["msg" => "{$food->name} was deleted"]);
+
+        return response()->json(['msg' => "{$food->name} was deleted"]);
     }
 }

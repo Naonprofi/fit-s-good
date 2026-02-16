@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Models\Food;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use Auth;
 
 class FoodPolicy
 {
@@ -13,7 +13,10 @@ class FoodPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        if (Auth::check()) {
+            return true; // Minden bejelentkezett felhasználó láthatja a food-okat
+        }
+        return false; // Nem bejelentkezett felhasználó nem láthatja
     }
 
     /**
@@ -21,7 +24,10 @@ class FoodPolicy
      */
     public function view(User $user, Food $food): bool
     {
-        return true;
+        if (Auth::check()) {
+            return true; // Minden bejelentkezett felhasználó láthatja a food-okat
+        }
+        return false; // Nem bejelentkezett felhasználó nem láthatja
     }
 
     /**
@@ -62,5 +68,14 @@ class FoodPolicy
     public function forceDelete(User $user, Food $food): bool
     {
         return false;
+    }
+
+    public function before(User $user, string $ability): ?bool
+    {
+        if ($user->is_admin) {
+            return true; // Az adminnak mindent szabad
+        }
+
+        return null; // Ha nem admin, megyünk tovább a konkrét metódusra
     }
 }

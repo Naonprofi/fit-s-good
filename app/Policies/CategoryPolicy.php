@@ -63,4 +63,13 @@ class CategoryPolicy
     {
         return false;
     }
+
+    public function before(User $user, string $ability): ?bool
+    {
+        if ($user->is_admin) {
+            return true; // Az adminnak mindent szabad
+        }
+
+        return null; // Ha nem admin, megyünk tovább a konkrét metódusra
+    }
 }

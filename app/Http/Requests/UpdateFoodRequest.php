@@ -11,12 +11,9 @@ class UpdateFoodRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
-    {
-        if (auth()->user()->can('update', Food::class)) {
-            return true;
-        }
-        return false;
-    }
+{
+    return auth()->user()->can('update', Food::class);
+}
 
     /**
      * Get the validation rules that apply to the request.

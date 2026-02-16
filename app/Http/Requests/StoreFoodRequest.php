@@ -12,10 +12,7 @@ class StoreFoodRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->user()->can('create', Food::class)) {
-            return true;
-        }
-        return false;
+        return auth()->user()->can('create', Food::class);
     }
 
     /**

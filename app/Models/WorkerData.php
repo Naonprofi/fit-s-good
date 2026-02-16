@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +12,7 @@ class WorkerData extends Model
     /** @use HasFactory<\Database\Factories\WorkerDataFactory> */
     use HasFactory;
     use SoftDeletes;
+    #[UsePolicy(WorkerDataPolicy::class)]
 
     protected $fillable = ['worker_gender', 'worker_name', 'worker_age'];
 
