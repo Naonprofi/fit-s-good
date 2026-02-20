@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Customer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCustomerRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->can('create', Customer::class);
     }
 
     /**
@@ -22,7 +23,12 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'age' => 'required|integer|min:18',
+            'gender' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string',
+            'password' => 'required|min:8',
         ];
     }
 }

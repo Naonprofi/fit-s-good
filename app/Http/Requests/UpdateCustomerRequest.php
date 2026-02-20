@@ -12,12 +12,7 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $customer = $this->route('customer');
-        if (! $customer) {
-            $customer = Customer::where('user_id', auth()->id())->first();
-        }
-
-        return $customer && auth()->id() === $customer->user_id;
+        return auth()->user()->can('update', Customer::class);
     }
 
     /**
@@ -27,12 +22,27 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
+        // 1. Megnézzük, mi jön az URL-ből (customersApi/{id})
+        $customerId = $this->route('customersApi');
+
+        // 2. Megkeressük a Customer-t
+        $customer = Customer::find($customerId);
+
+        // 3. Ha nincs meg, ne is menjen tovább a validáció
+        if (! $customer) {
+            return ['error' => 'required'];
+        }
+
+        $userId = $customer->user_id;
+
         return [
-            'cust_name' => 'required|string|max:255',
-            'cust_email' => 'required|email|max:255',
-            'cust_phone_num' => 'required|string|max:20',
-            'cust_gender' => 'required|in:male,female,other',
-            'cust_age' => 'required|integer|min:0|max:120',
+            'name' => 'sometimes|required',
+            'age' => 'sometimes|required|integer',
+            'gender' => 'sometimes|required',
+            'phone' => 'sometimes|required',
+            // Itt a legfontosabb rész:
+            'email' => 'sometimes|required|email|unique:users,email,'.$userId,
+            'password' => 'sometimes|nullable|min:8',
         ];
     }
 }

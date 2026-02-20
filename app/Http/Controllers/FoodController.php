@@ -13,7 +13,15 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        $foods = Food::all();
+
+        if ($foods->isEmpty()) {
+            return response()->json([
+                'msg' => 'There are no foods in the database',
+            ], 404);
+        }
+
+        return view('views.menu', compact('foods'));
     }
 
     /**

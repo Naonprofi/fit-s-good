@@ -13,10 +13,7 @@ class FoodPolicy
      */
     public function viewAny(User $user): bool
     {
-        if (Auth::check()) {
-            return true; // Minden bejelentkezett felhasználó láthatja a food-okat
-        }
-        return false; // Nem bejelentkezett felhasználó nem láthatja
+        return true;
     }
 
     /**
@@ -24,10 +21,7 @@ class FoodPolicy
      */
     public function view(User $user, Food $food): bool
     {
-        if (Auth::check()) {
-            return true; // Minden bejelentkezett felhasználó láthatja a food-okat
-        }
-        return false; // Nem bejelentkezett felhasználó nem láthatja
+        return true;
     }
 
     /**

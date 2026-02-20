@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('worker_data_id');
-            $table->unsignedBigInteger('worker_contact_id');
-            $table->unsignedBigInteger('schedule_id');
-            $table->unsignedBigInteger('job_title_id');
-            $table->foreign('worker_data_id')->references('id')->on('worker_data')->cascadeOnDelete();
-            $table->foreign('worker_contact_id')->references('id')->on('worker_contacts')->cascadeOnDelete();
-            $table->foreign('schedule_id')->references('id')->on('worker_schedules')->cascadeOnDelete();
-            $table->foreign('job_title_id')->references('id')->on('worker_job_titles')->cascadeOnDelete();
+            $table->unsignedBigInteger('worker_data_id')->nullable();
+            $table->unsignedBigInteger('worker_contact_id')->nullable();
+            $table->unsignedBigInteger('schedule_id')->nullable();
+            $table->unsignedBigInteger('job_title_id')->nullable();
+            $table->foreign('worker_data_id')->references('id')->on('worker_data')->nullOnDelete();
+            $table->foreign('worker_contact_id')->references('id')->on('worker_contacts')->nullOnDelete();
+            $table->foreign('schedule_id')->references('id')->on('worker_schedules')->nullOnDelete();
+            $table->foreign('job_title_id')->references('id')->on('worker_job_titles')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
