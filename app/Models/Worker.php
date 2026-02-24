@@ -14,6 +14,13 @@ class Worker extends Model
     use SoftDeletes;
     #[UsePolicy(WorkerPolicy::class)]
     
+    protected $fillable = [
+        'worker_data_id',
+        'worker_contact_id',
+        'job_title_id',
+        'schedule_id',
+    ];
+
     public function workerData()
     {
         return $this->belongsTo(WorkerData::class, 'worker_data_id');

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateFoodRequest;
 use App\Models\Food;
 use App\Policies\FoodPolicy;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+
 #[UsePolicy(FoodPolicy::class)]
 class FoodController extends Controller
 {
@@ -17,8 +18,6 @@ class FoodController extends Controller
     public function index()
     {
         $foods = Food::all();
-
-        // Az isEmpty() metódus nézi meg, hogy valóban üres-e a lista
         if ($foods->isEmpty()) {
             return response()->json([
                 'msg' => 'there are no foods in the database',
@@ -33,14 +32,13 @@ class FoodController extends Controller
      */
     public function store(StoreFoodRequest $request)
     {
-        if ($this->authorize('create', Food::class)) {
-            $food = Food::create($request->validated());
+        $this->authorize('create', Food::class);
+        $food = Food::create($request->validated());
 
-            return response()->json([
-                'msg' => 'Created successfully',
-                'data' => $food,
-            ], 201);
-        }
+        return response()->json([
+            'msg' => 'Created successfully',
+            'data' => $food,
+        ], 201);
 
         return response()->json(['msg' => 'Unauthorized'], 403);
 
@@ -63,15 +61,14 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, string $foodName)
     {
-        if ($this->authorize('update', Food::class)) {
-            if ($food = Food::where('name', $foodName)->first()) {
-                $food->update($request->all());
+        $this->authorize('update', Food::class);
+        if ($food = Food::where('name', $foodName)->first()) {
+            $food->update($request->all());
 
-                return response()->json(['msg' => "{$food->name} was updated", 'data' => $food]);
-            }
-
-            return response()->json(['msg' => "$foodName not found"], 404);
+            return response()->json(['msg' => "{$food->name} was updated", 'data' => $food]);
         }
+
+        return response()->json(['msg' => "$foodName not found"], 404);
 
         return response()->json(['msg' => 'Unauthorized'], 403);
 
@@ -82,15 +79,14 @@ class FoodController extends Controller
      */
     public function destroy(string $foodName)
     {
-        if ($this->authorize('delete', Food::class)) {
-            if ($food = Food::where('name', $foodName)->first()) {
-                $food->delete();
+        $this->authorize('delete', Food::class);
+        if ($food = Food::where('name', $foodName)->first()) {
+            $food->delete();
 
-                return response()->json(['msg' => "{$food->name} was deleted"]);
-            }
-
-            return response()->json(['msg' => "$foodName not found"], 404);
+            return response()->json(['msg' => "{$food->name} was deleted"]);
         }
+
+        return response()->json(['msg' => "$foodName not found"], 404);
 
         return response()->json(['msg' => 'Unauthorized'], 403);
 
