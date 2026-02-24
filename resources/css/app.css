@@ -106,4 +106,8 @@ body {
         right: 20px !important; /* Mobilon nem kell a 200px, mert lemenne a képernyőről */
         font-size: 1rem !important; /* Kicsit kisebb betű, hogy ne legyen tolakodó */
     }
+    iframe {
+        width: 100% !important; /* Mobilon a térkép legyen teljes szélességű */
+        height: 300px !important; /* Magasságot is csökkentjük, hogy ne foglaljon túl sok helyet */
+    }
 }
