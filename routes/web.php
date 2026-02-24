@@ -32,7 +32,7 @@ Route::get('/profile', [CustomerController::class, 'show'])->name('profile');
 Route::get('/profile/edit', [CustomerController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update/{customer}', [CustomerController::class, 'update'])->name('profile.update');
 Route::get('/menu', function () {
-    return view('menu');})->name('menu');
+    return view('menu.main');})->name('menu');
 Route::get('/contacts', function () {
     return view('contacts');})->name('contacts');
     Route::get('/reservations', function () {
