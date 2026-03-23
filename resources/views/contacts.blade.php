@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('navbar')
+<div>
+    
+</div>
     <nav class="navbar navbar-expand-lg navbar-light  shadow-sm">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

@@ -4,6 +4,7 @@ use App\Http\Controllers\CustContactController;
 use App\Http\Controllers\CustDataController;
 use App\Http\Controllers\CustMembershipController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\WorkerContactController;
 use App\Http\Controllers\WorkerController;
@@ -31,8 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', [CustomerController::class, 'show'])->name('profile');
 Route::get('/profile/edit', [CustomerController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update/{customer}', [CustomerController::class, 'update'])->name('profile.update');
-Route::get('/menu', function () {
-    return view('menu.main');})->name('menu');
+Route::get('/menu', [FoodController::class, 'index'])->name('menu');
 Route::get('/contacts', function () {
     return view('contacts');})->name('contacts');
     Route::get('/reservations', function () {

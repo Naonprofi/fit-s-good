@@ -14,8 +14,8 @@
                 <div class="left-nav">
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
-                            <h1>Contact Us</h1>
-                            <p>Have questions or need assistance? Reach out to us using the information below.</p>
+                            <h1>Menu</h1>
+                            <p>Check out our delicious and healthy menu options!</p>
                         </div>
                     </div>
                 </div>
@@ -99,5 +99,119 @@
     </nav>
 @endsection
 @section('content')
+    <style>
+    /* Alapértelmezett (Mobil) nézet */
+    .menu-grid {
+        display: flex;
+        flex-direction: column; /* Egymás alá rakja őket */
+        gap: 40px; /* Távolság az egymás alatti elemek között */
+        margin-top: 30px;
+    }
+
+    .menu-container {
+        color: white; /* Fehér szöveg mindenhol */
+        max-width: 1000px; /* Kicsit szélesebbre vettem, hogy PC-n kényelmesebb legyen */
+        margin: 0 auto;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        padding: 20px;
+    }
+
+    .menu-item img {
+        width: 100%;
+        max-width: 400px; /* Ne legyen túl óriási a kép mobilon sem */
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* PC / Tablet nézet (768px felett) */
+    @media (min-width: 768px) {
+        .menu-grid {
+            flex-direction: row; /* Egymás mellé rakja őket */
+            justify-content: center;
+            gap: 80px; /* Itt állíthatod, milyen messze legyenek egymástól PC-n */
+        }
+        
+        .menu-item {
+            flex: 1;
+            max-width: 45%; /* Biztosítja, hogy ne érjenek össze */
+        }
+    }
+</style>
+
+<main class="menu-container">
     
+    <section class="menu-section" style="margin-bottom: 60px; margin-top: 20px;">
+        <h2 style="text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid #afafaf; display: inline-block; padding-bottom: 10px; margin-bottom: 20px;">
+            Your Favourites
+        </h2>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="{{ asset('images/barackoscsirke.jpg') }}" alt="Favourite Food 1">
+                <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Chicken breast filled with camembert and apricot, sided with rice</p>
+                <p style="font-size: 16px; opacity: 0.9;">513kcal - 79g carbs - 30g protein - 9g fat</p> 
+            </div>
+            <div class="menu-item">
+                <img src="{{ asset('images/kecskesajt.jpg') }}" alt="Favourite Food 2">
+                <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Grilled goat cheese sided with rukkola salad</p>
+                <p style="font-size: 16px; opacity: 0.9;">350kcal - 20g carbs - 25g protein - 15g fat</p>
+            </div>
+        </div>
+    </section>
+
+    <hr style="width: 30%; border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 50px auto;">
+
+    <section class="menu-section">
+        <h2 style="text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid #afafaf; display: inline-block; padding-bottom: 10px; margin-bottom: 20px;">
+            Chef's Choice
+        </h2>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="{{ asset('images/chickenleg.jpg') }}" alt="Chef's Choice 1">
+                <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Baked chicken leg sided with red cabbage</p>
+                <p style="font-size: 16px; opacity: 0.9;">420kcal - 30g carbs - 35g protein - 12g fat</p>
+            </div>
+            <div class="menu-item">
+                <img src="{{ asset('images/lecso.jpg') }}" alt="Chef's Choice 2">
+                <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Baked chicken breast with Lecsó sided with bulgur</p>
+                <p style="font-size: 16px; opacity: 0.9;">380kcal - 25g carbs - 30g protein - 10g fat</p>
+            </div>
+        </div>
+    </section>
+    <section class="menu-table-section" style="margin-top: 50px; padding: 20px;">
+    <h2 style="text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #afafaf; display: inline-block; padding-bottom: 5px; margin-bottom: 30px; color: white;">
+        Full Menu Details
+    </h2>
+
+    <div style="overflow-x: auto;"> <table style="width: 100%; border-collapse: collapse; color: white; font-family: 'Playfair Display', serif; text-align: left;">
+            <thead>
+                <tr style="border-bottom: 2px solid #afafaf; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">
+                    <th style="padding: 15px 10px;">Name</th>
+                    <th style="padding: 15px 10px;">Calories</th>
+                    <th style="padding: 15px 10px;">Protein</th>
+                    <th style="padding: 15px 10px;">Carbs</th>
+                    <th style="padding: 15px 10px;">Fat</th>
+                    <th style="padding: 15px 10px; text-align: right;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($foods as $item)
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); transition: background 0.3s;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="this.style.backgroundColor='transparent'">
+                        <td style="padding: 15px 10px; font-weight: bold;">{{ $item->name }}</td>
+                        <td style="padding: 15px 10px;">{{ $item->calories }} kcal</td>
+                        <td style="padding: 15px 10px;">{{ $item->protein }}g</td>
+                        <td style="padding: 15px 10px;">{{ $item->carbs }}g</td>
+                        <td style="padding: 15px 10px;">{{ $item->fat }}g</td>
+                        <td style="padding: 15px 10px; text-align: right; font-weight: bold; color: #d4af37;">
+                            {{ number_format($item->price, 0, ',', ' ') }} Ft
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</section>
+</main>
 @endsection

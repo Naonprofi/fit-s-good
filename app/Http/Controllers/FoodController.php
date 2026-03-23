@@ -21,7 +21,7 @@ class FoodController extends Controller
             ], 404);
         }
 
-        return view('menu.all', compact('foods'));
+        return view('menu.main', compact('foods'));
     }
 
     /**

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('protein', 8, 2)->default(0);
             $table->decimal('carbs', 8, 2)->default(0);
             $table->decimal('fat', 8, 2)->default(0);
+            $table->decimal('price', 8, 2)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
