@@ -99,47 +99,89 @@
 @endsection
 
 @section('content')
-<div style="display: flex; justify-content: center; width: 100%;">
-    <p style="margin-top: 20px; font-size: 1.5rem; color: #afafaf; text-align: center; width: 500px; line-height: 1.6;">
-        For groups of more than 10 people or special events, please contact us at <br>
-        <a href="mailto:info@fitsgood.com" style="color: rgb(30, 193, 30); text-decoration: none;">info@fitsgood.com</a> <br>
-        or call us at
-        <a href="tel:+1234567890" style="color: rgb(30, 193, 30); text-decoration: none;">+1 (234) 567-890</a>.
-    </p>
-</div>
-    <section class="reservation-section" style="max-width: 500px; margin: 50px auto; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); font-family: 'Playfair Display', serif; color: white;">
+<main class="membership-container" style="max-width: 1100px; margin: 50px auto; font-family: 'Playfair Display', serif; color: white; padding: 20px;">
     
-    <h2 style="text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #afafaf; display: block; padding-bottom: 15px; margin-bottom: 30px;">
-        Table Reservation
-    </h2>
+    <h1 style="text-align: center; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 50px; border-bottom: 2px solid #d4af37; display: inline-block; width: 100%; padding-bottom: 15px;">
+        Membership Center
+    </h1>
 
-    <form action="{{ route('reservations.store') }}" method="POST">
-        @csrf
-
-        <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; color: #afafaf;">Date of Visit</label>
-            <input type="date" name="date" required min="{{ date('Y-m-d') }}" style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-bottom: 60px;">
+        
+        <div style="flex: 1; min-width: 300px; max-width: 400px; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid #afafaf; text-align: center; opacity: {{ auth()->user()->is_premium ? '0.6' : '1' }};">
+            <h2 style="text-transform: uppercase; color: #afafaf;">Basic Plan</h2>
+            <div style="font-size: 2rem; margin: 20px 0;">FREE</div>
+            <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
+                <li>✅ Table Reservation</li>
+                <li>✅ View Digital Menu</li>
+            </ul>
+            @if(!auth()->user()->is_premium)
+                <button disabled style="width: 100%; padding: 12px; background: #555; color: #aaa; border: none; border-radius: 5px;">Your Current Plan</button>
+            @endif
         </div>
 
-        <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; color: #afafaf;">Select Time (Hourly)</label>
-            <select name="period" required style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
-                <option value="" disabled selected>Choose an hour...</option>
-                @for ($hour = 6; $hour <= 19; $hour++)
-                    <option value="{{ $hour }}">{{ sprintf('%02d:00', $hour) }}</option>
-                @endfor
-            </select>
-            <small style="color: #888; display: block; margin-top: 5px;">We are open from 06:00 to 20:00</small>
+        <div style="flex: 1; min-width: 300px; max-width: 400px; background: rgba(212, 175, 55, 0.05); padding: 30px; border-radius: 15px; border: 2px solid #d4af37; text-align: center;">
+            <h2 style="text-transform: uppercase; color: #d4af37;">Premium Plan</h2>
+            
+            @if(auth()->user()->is_premium)
+                <div style="font-size: 1.2rem; color: #d4af37; margin: 20px 0; font-weight: bold;">★ PREMIUM ACTIVE ★</div>
+                <p style="color: #afafaf;">Scroll down to access your exclusive content.</p>
+            @else
+                <div style="font-size: 2rem; margin: 20px 0;">$19.99 <span style="font-size: 1rem; color: #afafaf;">/mo</span></div>
+                <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
+                    <li>✨ Exclusive Recipes</li>
+                    <li>✨ Dietary Consultation</li>
+                    <li>✨ Trainer Advice</li>
+                </ul>
+                <form action="{{ route('membership.upgrade') }}" method="POST">
+                    @csrf
+                    <button type="submit" style="width: 100%; padding: 15px; background: rgb(30, 193, 30); color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-transform: uppercase;">
+                        Upgrade Now
+                    </button>
+                </form>
+            @endif
         </div>
+    </div>
 
-        <div style="margin-bottom: 30px;">
-            <label style="display: block; margin-bottom: 8px; color: #afafaf;">Number of Guests</label>
-            <input type="number" name="guests" min="1" max="12" required style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
+    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 60px 0;">
+
+    @if(auth()->user()->is_premium)
+        <section id="premium-area" style="animation: fadeIn 1s ease-in;">
+            <h2 style="text-align: center; color: #d4af37; text-transform: uppercase; margin-bottom: 40px;">Exclusive Premium Content</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                
+                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 10px; border-left: 4px solid #d4af37;">
+                    <h3>📖 Private Recipes</h3>
+                    <p style="color: #afafaf; font-size: 0.9rem;">Learn how to cook our signature healthy dishes at home.</p>
+                    <button style="margin-top: 10px; background: none; border: 1px solid #d4af37; color: #d4af37; padding: 5px 15px; cursor: pointer;">View Recipes</button>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 10px; border-left: 4px solid #d4af37;">
+                    <h3>🥗 Dietary Consultation</h3>
+                    <p style="color: #afafaf; font-size: 0.9rem;">Get a personalized meal plan based on your goals.</p>
+                    <button style="margin-top: 10px; background: none; border: 1px solid #d4af37; color: #d4af37; padding: 5px 15px; cursor: pointer;">Book a session</button>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 10px; border-left: 4px solid #d4af37;">
+                    <h3>💪 Trainer Advice</h3>
+                    <p style="color: #afafaf; font-size: 0.9rem;">Direct chat with our professional trainers for workout tips.</p>
+                    <button style="margin-top: 10px; background: none; border: 1px solid #d4af37; color: #d4af37; padding: 5px 15px; cursor: pointer;">Ask a Trainer</button>
+                </div>
+
+            </div>
+        </section>
+    @else
+        <div style="text-align: center; padding: 40px; background: rgba(0,0,0,0.2); border-radius: 15px; filter: blur(2px); pointer-events: none;">
+            <p>Premium content is hidden. Upgrade to unlock recipes and consultations.</p>
         </div>
+    @endif
 
-        <button type="submit" style="width: 100%; padding: 15px; background-color:rgb(16, 94, 16); color: gainsboro; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-transform: uppercase;">
-            Confirm Reservation
-        </button>
-    </form>
-</section>
+</main>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 @endsection

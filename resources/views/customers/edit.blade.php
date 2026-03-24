@@ -128,7 +128,7 @@
             <div class="mb-3"> <label for="age" class="form-label">Age</label> <input type="text" class="form-control"
                     id="cust_age" name="cust_age" value="{{ old('cust_age', $customer->custData->cust_age ?? '') }}"
                     required> </div>
-            <button type="submit" class="btn btn-primary">Update Profile</button>
+            <button type="submit" style="background-color:  rgb(39, 76, 39); color: white;" class="btn">Update Profile</button>
         </form>
     </div>
 @endsection

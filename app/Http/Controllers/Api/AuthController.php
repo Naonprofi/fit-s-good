@@ -22,7 +22,7 @@ class AuthController extends Controller
 
         // 3. Ellenőrizzük a jelszót
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Hibás adatok!'], 401);
+            return response()->json(['message' => 'Wrong credentials!'], 401);
         }
 
         // 4. Generálunk egy tokent a felhasználónak

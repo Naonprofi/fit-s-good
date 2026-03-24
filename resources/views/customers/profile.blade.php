@@ -103,7 +103,7 @@
 @section('content') <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card" style="background-color: rgb(110, 129, 110); color: gainsboro;">
                     <div class="card-header">{{ __('Here is your profile') }}</div>
                     <div class="card-body">
                         <p><strong>Name:</strong> {{ $customer->custData->cust_name ?? 'N/A' }}</p>
@@ -112,7 +112,7 @@
                         <p><strong>Gender:</strong> {{ $customer->custData->cust_gender ?? 'N/A' }}</p>
                         <p><strong>Age:</strong> {{ $customer->custData->cust_age ?? 'N/A' }}</p>
                         <hr>
-                        <a href="{{ route('profile.edit') }}" class="btn btn-success">Edit Profile</a>
+                        <a href="{{ route('profile.edit') }}" style="background-color:  rgb(39, 76, 39); color: white;" class="btn">Edit Profile</a>
                     </div>
                 </div>
             </div>

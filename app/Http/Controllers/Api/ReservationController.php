@@ -18,10 +18,22 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // app/Http/Controllers/ReservationController.php
+
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'date'   => 'required|date|after_or_equal:today',
+        'period' => 'required|integer|min:6|max:20', // Itt korlátozzuk a nyitvatartást
+        'guests' => 'required|integer|min:1|max:12',
+    ]);
+
+    $validated['customer_id'] = auth()->id();
+
+    \App\Models\Reservation::create($validated);
+
+    return redirect()->back()->with('success', 'Asztalfoglalásod rögzítettük!');
+}
 
     /**
      * Display the specified resource.
