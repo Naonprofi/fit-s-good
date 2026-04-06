@@ -14,7 +14,7 @@ class WorkerSchedule extends Model
     use SoftDeletes;
     #[UsePolicy(WorkerSchedulePolicy::class)]
 
-    protected $fillable = ['schedule'];
+    protected $fillable = ['shift'];
 
     public function worker()
     {

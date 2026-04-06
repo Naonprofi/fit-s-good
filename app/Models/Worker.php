@@ -14,6 +14,18 @@ class Worker extends Model
     use SoftDeletes;
     #[UsePolicy(WorkerPolicy::class)]
     
+    protected static function boot() {
+        parent::boot();
+
+        // Amikor a Worker-t töröljük, töröljük a kapcsolódó táblákat is (Soft Delete)
+        static::deleting(function($worker) {
+            $worker->workerData()->delete();
+            $worker->workerContact()->delete();
+            $worker->workerJobTitle()->delete();
+            $worker->workerSchedule()->delete();
+        });
+    }
+
     protected $fillable = [
         'worker_data_id',
         'worker_contact_id',
