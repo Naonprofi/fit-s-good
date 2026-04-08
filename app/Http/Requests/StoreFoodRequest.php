@@ -29,6 +29,7 @@ class StoreFoodRequest extends FormRequest
             'protein' => 'required|numeric|min:0',
             'carbs' => 'required|numeric|min:0',
             'fat' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
         ];
     }
 }

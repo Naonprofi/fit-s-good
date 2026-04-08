@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::post('/foodsApi', [FoodController::class, 'store']);
-        Route::put('/foodsApi/{food}', [FoodController::class, 'update']);
-        Route::delete('/foodsApi/{food}', [FoodController::class, 'destroy']);
+        Route::put('/foodsApi/{id}', [FoodController::class, 'update']);
+        Route::delete('/foodsApi/{id}', [FoodController::class, 'destroy']);
         Route::apiResource('/workersApi', WorkerController::class);
         Route::apiResource('/customersApi', CustomerController::class);
         Route::apiResource('/reservationsApi', ReservationController::class);

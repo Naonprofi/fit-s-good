@@ -34,7 +34,7 @@ Route::get('/profile/edit', [CustomerController::class, 'edit'])->name('profile.
 Route::put('/profile/update/{customer}', [CustomerController::class, 'update'])->name('profile.update');
 Route::get('/menu', [FoodController::class, 'index'])->name('menu');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
-Route::get('/membership.upgrade', function () {
+Route::get('/membership-upgrade', function () {
     return view('customers.membership_upgrade');})->name('membership.upgrade');
 Route::get('/membership', function () {
     return view('customers.membership');})->name('membership');

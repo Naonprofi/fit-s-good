@@ -22,6 +22,7 @@ class Food extends Model
         'protein',
         'carbs',
         'fat',
+        'price'
     ];
 
     public function category()

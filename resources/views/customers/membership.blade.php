@@ -42,7 +42,6 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('menu') }}">Menu</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -62,7 +61,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -139,13 +138,13 @@
                         <li>✨ Dietary Consultation</li>
                         <li>✨ Trainer Advice</li>
                     </ul>
-                    <form action="{{ route('membership.upgrade') }}" method="POST">
                         @csrf
-                        <button type="submit"
-                            style="width: 100%; padding: 15px; background: rgb(30, 193, 30); color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-transform: uppercase;">
-                            Upgrade Now
-                        </button>
-                    </form>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="{{ route('membership-upgrade') }}"
+                                style="display: inline-block; padding: 15px 30px; background-color: #1ec11e; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-family: sans-serif; text-transform: uppercase;">
+                                Upgrade to Premium
+                            </a>
+                        </div>
                 @endif
             </div>
         </div>
