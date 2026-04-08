@@ -39,7 +39,7 @@ class WorkerController extends Controller
         $this->authorize('create', Worker::class);
 
         return DB::transaction(function () use ($request) {
-            // 1. Adatok létrehozása
+
             $data = WorkerData::create([
                 'worker_name' => $request->name,
                 'worker_age' => $request->age,
@@ -59,7 +59,6 @@ class WorkerController extends Controller
                 'shift' => $request->shift,
             ]);
 
-            // 2. A fő Worker rekord létrehozása a friss ID-kkal
             $worker = Worker::create([
                 'worker_data_id' => $data->id,
                 'worker_contact_id' => $contact->id,
@@ -67,8 +66,6 @@ class WorkerController extends Controller
                 'schedule_id' => $schedule->id,
             ]);
 
-            // 3. Visszaadjuk a teljes objektumot az asztali appnak
-            // FIGYELEM: Csak a modellben létező CamelCase neveket használd!
             return response()->json([
                 'msg' => 'Worker created successfully',
                 'data' => $worker->load([
@@ -108,7 +105,7 @@ class WorkerController extends Controller
         $this->authorize('update', $worker);
 
         return DB::transaction(function () use ($request, $worker) {
-            // 1. Személyes adatok
+
             if ($worker->workerData) {
                 $worker->workerData->update([
                     'worker_name' => $request->name ?? $worker->workerData->worker_name,
@@ -117,7 +114,6 @@ class WorkerController extends Controller
                 ]);
             }
 
-            // 2. Elérhetőség
             if ($worker->workerContact) {
                 $worker->workerContact->update([
                     'worker_email' => $request->email ?? $worker->workerContact->worker_email,
@@ -131,9 +127,8 @@ class WorkerController extends Controller
                 ]);
             }
 
-            // 4. Beosztás frissítése
             if ($worker->workerSchedule) {
-                // Itt a 'shift' kulcsot használd, ha az van a tábládban
+
                 $worker->workerSchedule->update([
                     'shift' => $request->shift ?? $worker->workerSchedule->shift,
                 ]);
@@ -151,21 +146,16 @@ class WorkerController extends Controller
      */
     public function destroy(string $id): JsonResponse
     {
-        // 1. Megkeressük a munkást
+
         $worker = Worker::find($id);
 
         if (! $worker) {
             return response()->json(['msg' => "Worker with ID $id not found"], 404);
         }
 
-        // 2. Jogosultság ellenőrzése (Policy)
         $this->authorize('delete', $worker);
 
-        // 3. Tranzakció, hogy minden kapcsolódó adat is soft-delete-elve legyen
         return DB::transaction(function () use ($worker) {
-
-            // Mivel soft delete-ről van szó, a kapcsolódó tábláknál is
-            // meg kell hívni a delete()-et, feltéve, hogy azokban is van softDeletes!
 
             if ($worker->workerData) {
                 $worker->workerData->delete();
@@ -176,7 +166,6 @@ class WorkerController extends Controller
                 $worker->workerContact->delete();
             }
 
-            // A te migrációd szerinti kapcsolatnevekkel:
             if ($worker->workerJobTitle) {
                 $worker->workerJobTitle->delete();
             }
@@ -185,7 +174,6 @@ class WorkerController extends Controller
                 $worker->workerSchedule->delete();
             }
 
-            // Végül magát a munkást is "töröljük"
             $worker->delete();
 
             return response()->json([

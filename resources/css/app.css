@@ -18,11 +18,9 @@ body {
     min-height: 80vh;
     display: flex;
     flex-direction: column;
-    /* Egymás alá rakja a menüt és a központi szöveget */
     justify-content: center;
-    /* Függőlegesen középre teszi a tartalmat */
+
     align-items: center;
-    /* Vízszintesen középre teszi a tartalmat */
     text-align: center;
     color: white;
     padding: 2rem;
@@ -33,12 +31,10 @@ body {
 .welcome-text {
     color: whitesmoke;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    /* Erősebb árnyék az olvashatóságért */
 }
 
 .welcome-text h1 {
     font-size: 3.5rem;
-    /* Nagy, hangsúlyos cím */
     font-weight: bold;
     margin-bottom: 1rem;
 }
@@ -46,7 +42,6 @@ body {
 .welcome-text p {
     font-size: 1.2rem;
     max-width: 600px;
-    /* Hogy ne nyúljon el a szöveg túl hosszan */
 }
 
 .right-nav {
@@ -57,38 +52,34 @@ body {
     font-size: var(--big-font);
 }
 
-/* Felülbíráljuk a Bootstrap alapértelmezett sötét hover színét */
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
-    color: whitesmoke; /* A sötét szín helyett a homok színt használjuk */
-    text-decoration: underline; /* Aláhúzás a jobb láthatóságért */
-    transition: 0.5s; /* Lágy átmenet */
+    color: whitesmoke;
+    text-decoration: underline;
+    transition: 0.5s;
 }
 
-/* Ha a Dropdown szövege is feketedik, azt is javítjuk */
 .dropdown-item:hover {
     color: black;
     text-decoration: solid underline;
 }
 
-/* Eltünteti a Bootstrap alapértelmezett legördülő nyilát */
 .dropdown-toggle::after {
     display: none !important;
 }
 
-/* Alapbeállítások a mobilhoz (Media Query) */
 @media (max-width: 991px) {
     .navbar {
         padding: 1rem;
         min-height: 100vh;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important; /* Ez teszi a címet függőlegesen középre */
-        align-items: center !important; /* Ez teszi a címet vízszintesen középre */
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     .welcome-text h1 {
-        font-size: 2.2rem !important; /* Mobilon kicsit kisebb, hogy ne lógjon ki */
+        font-size: 2.2rem !important;
         width: 100%;
         margin: 0;
     }
@@ -99,15 +90,14 @@ body {
         margin-top: 10px;
     }
 
-    /* A név maradjon jobb alul, de igazítsuk a kis kijelzőhöz */
     .right-nav {
         position: absolute !important;
         bottom: 20px !important;
-        right: 20px !important; /* Mobilon nem kell a 200px, mert lemenne a képernyőről */
-        font-size: 1rem !important; /* Kicsit kisebb betű, hogy ne legyen tolakodó */
+        right: 20px !important;
+        font-size: 1rem !important;
     }
     iframe {
-        width: 100% !important; /* Mobilon a térkép legyen teljes szélességű */
-        height: 300px !important; /* Magasságot is csökkentjük, hogy ne foglaljon túl sok helyet */
+        width: 100% !important;
+        height: 300px !important;
     }
 }

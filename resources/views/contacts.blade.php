@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('navbar')
-<div>
-    
-</div>
+    <div>
+
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light  shadow-sm">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -11,7 +11,7 @@
             </button>
 
             <div class="" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
+
                 <div class="left-nav">
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
@@ -22,9 +22,9 @@
                 </div>
 
 
-                <!-- Right Side Of Navbar -->
+
                 <ul class="navbar-nav ms-auto right-nav">
-                    <!-- Authentication Links -->
+
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -64,7 +64,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -112,12 +112,15 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10174.436722907483!2d19.04513774850714!3d47.51211297728945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dc0e13c7d003%3A0xf7a80c1b5b00e34e!2zQnVkYXBlc3QsIEhvbnbDqWQgdMOpciAxMC9hLCAxMDU1!5e0!3m2!1shu!2shu!4v1771952847478!5m2!1shu!2shu"
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <hr>
-            <hr style="border: white 1px solid; width: 30%;">
+        <hr>
+        <hr style="border: white 1px solid; width: 30%;">
         <h3>Socials</h3>
-        <p><strong>ⓕ Facebook:</strong> <a href="https://www.facebook.com/fitsgood" style="color: white;">facebook.com/fitsgood</a></p>
-        <p><strong>🅾 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦:</strong> <a href="https://www.instagram.com/fitsgood" style="color: white;">instagram.com/fitsgood</a></p>
-        <p><strong>【ꚠ】𝗧𝗶𝗸𝗼𝗸:</strong> <a href="https://www.tiktok.com/fitsgood" style="color: white;">tiktok.com/fitsgood</a></p>
+        <p><strong>ⓕ Facebook:</strong> <a href="https://www.facebook.com/fitsgood"
+                style="color: white;">facebook.com/fitsgood</a></p>
+        <p><strong>🅾 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦:</strong> <a href="https://www.instagram.com/fitsgood"
+                style="color: white;">instagram.com/fitsgood</a></p>
+        <p><strong>【ꚠ】𝗧𝗶𝗸𝗼𝗸:</strong> <a href="https://www.tiktok.com/fitsgood"
+                style="color: white;">tiktok.com/fitsgood</a></p>
     </div>
 
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\WorkerFactory;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,16 +10,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Worker extends Model
 {
-    /** @use HasFactory<\Database\Factories\WorkerFactory> */
+    /** @use HasFactory<WorkerFactory> */
     use HasFactory;
+
     use SoftDeletes;
+
     #[UsePolicy(WorkerPolicy::class)]
-    
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
-        // Amikor a Worker-t töröljük, töröljük a kapcsolódó táblákat is (Soft Delete)
-        static::deleting(function($worker) {
+        static::deleting(function ($worker) {
             $worker->workerData()->delete();
             $worker->workerContact()->delete();
             $worker->workerJobTitle()->delete();

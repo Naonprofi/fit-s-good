@@ -67,9 +67,9 @@ class ReservationPolicy
     public function before(User $user, string $ability): ?bool
     {
         if ($user->is_admin) {
-            return true; // Az adminnak mindent szabad
+            return true; 
         }
 
-        return null; // Ha nem admin, megyünk tovább a konkrét metódusra
+        return null; 
     }
 }

@@ -9,20 +9,21 @@
             </button>
 
             <div class="" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
+
                 <div class="left-nav">
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
                             <h1>Welcome to Fit's Good!</h1>
-                            <p>Succesful login! In the Actions menu, you can choose to see our Menu, make Reservations or check your Membership.</p>
+                            <p>Succesful login! In the Actions menu, you can choose to see our Menu, make Reservations or
+                                check your Membership.</p>
                         </div>
                     </div>
                 </div>
 
 
-                <!-- Right Side Of Navbar -->
+
                 <ul class="navbar-nav ms-auto right-nav">
-                    <!-- Authentication Links -->
+
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -62,7 +63,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -146,12 +147,12 @@
 
                 <div class="row align-items-center mt-4">
 
-                    <!-- BAL OLDAL: KÉP -->
+
                     <div class="col-12 col-lg-6 story-img text-center">
                         <img src="{{ asset('images/fooldal3.png') }}" alt="Story image">
                     </div>
 
-                    <!-- JOBB OLDAL: SZÖVEG -->
+
                     <div class="col-12 col-lg-6 story-text">
                         <p>Fit’s Good is a contemporary restaurant founded by food enthusiasts who believed that healthy
                             cuisine can be both elegant and genuinely enjoyable.</p>

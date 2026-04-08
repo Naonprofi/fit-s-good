@@ -39,32 +39,27 @@ class CustomerController extends Controller
 
         return DB::transaction(function () use ($request) {
             $validated = $request->validated();
-            // 1. Személyes adatok (CustData)
             $custData = CustData::create([
                 'cust_name' => $validated['name'],
                 'cust_age' => $validated['age'],
                 'cust_gender' => $validated['gender'],
             ]);
 
-            // 2. Elérhetőség (CustContact)
             $custContact = CustContact::create([
                 'cust_email' => $validated['email'],
                 'cust_phone_num' => $validated['phone'],
             ]);
 
-            // 3. Tagság (Membership) - Alapértelmezetten 'none'
             $membership = CustMembership::create([
                 'type' => $validated['membership_type'] ?? 'none',
             ]);
 
-            // 4. User rekord (hogy be tudjon lépni a weben is)
             $user = User::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
             ]);
 
-            // 5. A Customer tábla összekötése
             $customer = Customer::create([
                 'user_id' => $user->id,
                 'cust_data_id' => $custData->id,
@@ -83,7 +78,6 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
 
-        // Ha nem létezik az ID, akkor lefut a te egyedi hibaüzeneted
         if (! $customer) {
             return response()->json([
                 'msg' => "Customer with ID: {$id} not found",
@@ -109,28 +103,28 @@ class CustomerController extends Controller
         return DB::transaction(function () use ($request, $customer) {
             $v = $request->validated();
 
-            // 1. Személyes adatok (Modell: custData)
             $customer->custData->update([
                 'cust_name' => $v['name'] ?? $customer->custData->cust_name,
                 'cust_age' => $v['age'] ?? $customer->custData->cust_age,
-                'cust_gender' => $v['gender'] ?? $customer->cust_data->cust_gender,
+                'cust_gender' => $v['gender'] ?? $customer->custData->cust_gender,
             ]);
 
-            // 2. Elérhetőség (Modell: custContact)
             $customer->custContact->update([
                 'cust_email' => $v['email'] ?? $customer->custContact->cust_email,
                 'cust_phone_num' => $v['phone'] ?? $customer->custContact->cust_phone_num,
             ]);
 
-            // 3. Felhasználó
             $customer->user->update([
                 'name' => $v['name'] ?? $customer->user->name,
                 'email' => $v['email'] ?? $customer->user->email,
             ]);
 
+            $customer->custMembership->update([
+                'type' => $v['mem_type'] ?? $customer->custMembership->type,
+            ]);
+
             return response()->json([
                 'msg' => 'Updated!',
-                // Itt is CamelCase a load!
                 'data' => $customer->load(['user', 'custData', 'custContact', 'custMembership']),
             ]);
         });
@@ -141,34 +135,30 @@ class CustomerController extends Controller
      */
     public function destroy(string $id): JsonResponse
     {
-        // 1. Megkeressük a rekordot kézzel
         $customer = Customer::find($id);
 
-        // 2. Ha nem létezik, dobunk egy normális hibaüzenetet a "null" hiba helyett
         if (! $customer) {
             return response()->json(['msg' => "Customer with ID: {$id} not found"], 404);
         }
 
-        // 3. Tranzakcióban törlünk mindent, hogy ne maradjon szemét az adatbázisban
         return DB::transaction(function () use ($customer) {
-            // Fontos a sorrend: előbb a kapcsolódó táblák (CamelCase!), aztán a Customer
 
-            // Töröljük a felhasználói fiókot
             if ($customer->user) {
                 $customer->user->delete();
             }
 
-            // Töröljük a személyes adatokat
             if ($customer->custData) {
                 $customer->custData->delete();
             }
 
-            // Töröljük a kontaktot
             if ($customer->custContact) {
                 $customer->custContact->delete();
             }
 
-            // Végül töröljük magát a Customer rekordot
+            if ($customer->custMembership) {
+                $customer->custMembership->delete();
+            }
+
             $customer->delete();
 
             return response()->json(['msg' => "{$customer->custData->cust_name} deleted successfully!"]);
