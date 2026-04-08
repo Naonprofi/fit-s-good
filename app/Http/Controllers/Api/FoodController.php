@@ -40,8 +40,6 @@ class FoodController extends Controller
             'data' => $food,
         ], 201);
 
-        return response()->json(['msg' => 'Unauthorized'], 403);
-
     }
 
     /**
@@ -59,36 +57,36 @@ class FoodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFoodRequest $request, string $foodName)
+    public function update(UpdateFoodRequest $request, $id) // ID-t várjon!
     {
-        $this->authorize('update', Food::class);
-        if ($food = Food::where('name', $foodName)->first()) {
-            $food->update($request->all());
+        // ID alapján keressünk!
+        $food = Food::find($id);
 
-            return response()->json(['msg' => "{$food->name} was updated", 'data' => $food]);
+        if (! $food) {
+            return response()->json(['msg' => 'Error: No such ID in the database: '.$id], 404);
         }
 
-        return response()->json(['msg' => "$foodName not found"], 404);
+        // Csak a validált adatokat frissítsük!
+        $food->update($request->validated());
 
-        return response()->json(['msg' => 'Unauthorized'], 403);
-
+        return response()->json([
+            'msg' => "Successfully updated: {$food->name}",
+            'data' => $food,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $foodName)
+    public function destroy($id)
     {
-        $this->authorize('delete', Food::class);
-        if ($food = Food::where('name', $foodName)->first()) {
+        $food = Food::find($id); // ID alapján keress!
+        if ($food) {
             $food->delete();
 
-            return response()->json(['msg' => "{$food->name} was deleted"]);
+            return response()->json(['msg' => 'Deleted successfully']);
         }
 
-        return response()->json(['msg' => "$foodName not found"], 404);
-
-        return response()->json(['msg' => 'Unauthorized'], 403);
-
+        return response()->json(['msg' => 'Error, could not delete: '.$id], 404);
     }
 }
