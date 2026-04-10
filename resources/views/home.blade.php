@@ -114,7 +114,7 @@
 
                     <div class="col-lg-2 d-flex flex-column">
                         <h1 class="hero-title">healthy, delicious and fit in one place</h1>
-                        <a href="#" class="menu-btn">Check our MENU →</a>
+                        <a href="{{ route('menu') }}" class="menu-btn">Check our MENU →</a>
                     </div>
 
                     <div class="col-lg-5 d-flex justify-content-center">

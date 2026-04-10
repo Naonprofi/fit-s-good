@@ -34,11 +34,15 @@ Route::get('/profile/edit', [CustomerController::class, 'edit'])->name('profile.
 Route::put('/profile/update/{customer}', [CustomerController::class, 'update'])->name('profile.update');
 Route::get('/menu', [FoodController::class, 'index'])->name('menu');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
-Route::get('/membership-upgrade', function () {
-    return view('customers.membership_upgrade');})->name('membership.upgrade');
-Route::get('/membership', function () {
-    return view('customers.membership');})->name('membership');
 Route::get('/contacts', function () {
     return view('contacts');})->name('contacts');
     Route::get('/reservations', function () {
     return view('customers.reservations');})->name('reservations');
+// Ezt a gombot hívod meg a dropdown menüben
+Route::get('/membership', [CustMembershipController::class, 'index'])->name('membership');
+
+// Ez a fizetési oldal
+Route::get('/membership/upgrade', [CustMembershipController::class, 'upgrade'])->name('membership.upgrade');
+
+// Ez pedig a tényleges adatbázis módosítás (POST)
+Route::post('/membership/finish', [CustMembershipController::class, 'finishPayment'])->name('membership.finish');

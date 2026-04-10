@@ -1,4 +1,4 @@
-@extends('layouts.menu')
+@extends('layouts.app')
 
 
 @section('navbar')
@@ -62,7 +62,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -199,6 +199,33 @@
                 Full Menu Details
             </h2>
 
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 40px;">
+                @php
+                    $categories = [
+                        1 => 'Main Course',
+                        2 => 'Dessert',
+                        3 => 'Soup',
+                        4 => 'Breakfast',
+                        5 => 'Drink'
+                    ];
+                    $currentCategory = request('category_id');
+                @endphp
+
+                <a href="{{ route('menu') }}"
+                    style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s;
+                   {{ !$currentCategory ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
+                    All
+                </a>
+
+                @foreach($categories as $id => $name)
+                    <a href="{{ route('menu', ['category_id' => $id]) }}"
+                        style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s;
+                                   {{ $currentCategory == $id ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
+                        {{ $name }}
+                    </a>
+                @endforeach
+            </div>
+
             <div style="overflow-x: auto;">
                 <table
                     style="width: 100%; border-collapse: collapse; color: white; font-family: 'Playfair Display', serif; text-align: left;">
@@ -214,7 +241,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($foods as $item)
+                        @forelse ($foods as $item)
                             <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); transition: background 0.3s;"
                                 onmouseover="this.style.backgroundColor='rgba(255,255,255,0.05)'"
                                 onmouseout="this.style.backgroundColor='transparent'">
@@ -227,7 +254,12 @@
                                     {{ number_format($item->price, 0, ',', ' ') }} Ft
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6" style="padding: 30px; text-align: center; color: #888;">No items found in
+                                    this category.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

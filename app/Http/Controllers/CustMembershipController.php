@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\CustMembership;
 use App\Http\Requests\StoreCustMembershipRequest;
 use App\Http\Requests\UpdateCustMembershipRequest;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 #[UsePolicy(CustMembershipPolicy::class)]
 class CustMembershipController extends Controller
 {
@@ -14,7 +18,37 @@ class CustMembershipController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        // A 'with' segítségével egyből lekérjük a tagsági adatokat is
+        $customer = Customer::with('CustMembership')->where('user_id', $user->id)->first();
+
+        // Ellenőrizzük, hogy létezik-e a customer ÉS a hozzá tartozó tagság
+        if (!$customer || !$customer->CustMembership || $customer->CustMembership->type === 'none') {
+            return view('customers.membership');
+        }
+
+        // Ha idáig eljut, akkor prémium
+        return view('customers.membership_premium');
+    }
+
+    public function upgrade()
+    {
+        return view('customers.membership_upgrade'); // A fizetős oldalad
+    }
+
+    public function finishPayment(Request $request)
+    {
+        $user = Auth::user();
+        $customer = Customer::where('user_id', $user->id)->first();
+
+        if ($customer) {
+            // Itt frissítjük a cust_memberships táblát a kapcsolaton keresztül
+            $membership = CustMembership::find($customer->membership_id);
+            $membership->update(['type' => 'premium']);
+        }
+
+        return redirect()->route('membership')->with('success', 'Payment successful! You are now a Premium member.');
     }
 
     /**

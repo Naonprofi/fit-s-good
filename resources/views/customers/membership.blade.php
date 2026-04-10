@@ -61,7 +61,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -138,13 +138,13 @@
                         <li>✨ Dietary Consultation</li>
                         <li>✨ Trainer Advice</li>
                     </ul>
-                        @csrf
-                        <div style="text-align: center; margin-top: 30px;">
-                            <a href="{{ route('membership-upgrade') }}"
-                                style="display: inline-block; padding: 15px 30px; background-color: #1ec11e; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-family: sans-serif; text-transform: uppercase;">
-                                Upgrade to Premium
-                            </a>
-                        </div>
+                    @csrf
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="{{ route('membership.upgrade') }}"
+                            style="display: inline-block; padding: 15px 30px; background-color: #1ec11e; ...">
+                            Upgrade to Premium
+                        </a>
+                    </div>
                 @endif
             </div>
         </div>
@@ -189,11 +189,6 @@
 
                 </div>
             </section>
-        @else
-            <div
-                style="text-align: center; padding: 40px; background: rgba(0,0,0,0.2); border-radius: 15px; filter: blur(2px); pointer-events: none;">
-                <p>Premium content is hidden. Upgrade to unlock recipes and consultations.</p>
-            </div>
         @endif
 
     </main>

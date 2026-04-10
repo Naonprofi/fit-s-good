@@ -13,9 +13,8 @@
                 <div class="left-nav">
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
-                            <h1>Welcome to Fit's Good!</h1>
-                            <p>Your best friend in eating healthy without losing flavour. Track your macros and
-                                achieve your fitness goals with ease.</p>
+                            <h1>Reserve a table</h1>
+                            <p>Fill in the details below to reserve a table at Fit's Good.</p>
                         </div>
                     </div>
                 </div>
@@ -62,7 +61,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -99,76 +98,17 @@
 @endsection
 
 @section('content')
-
-    <head>
-        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css', 'resources/css/welcome.css'])
-        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
-    </head>
-
-    <body>
-        <div class="section">
-            <div class="container">
-                <div class="row d-flex align-items-center">
-
-                    <div class="col-lg-2 d-flex flex-column">
-                        <h1 class="hero-title">healthy, delicious and fit in one place</h1>
-                        <a href="{{ route('menu') }}" class="menu-btn">Check our MENU →</a>
-                    </div>
-
-                    <div class="col-lg-5 d-flex justify-content-center">
-                        <div class="food-card">
-                            <img src="{{ asset('images/fooldal1.png') }}" class="img-fluid w-75 rounded-4"
-                                alt="Healthy food plate">
-                            <span class="food-text">juhtúrós-sajtos sült brokkoli</span>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5 d-flex justify-content-center">
-                        <div class="food-card">
-                            <img src="{{ asset('images/fooldal2.png') }}" class="img-fluid w-75 rounded-4"
-                                alt="Charcuterie board">
-                            <span class="food-text">grillezett csirkemellfilé bulgurral, párolt spárgával és
-                                brokkolival</span>
-                        </div>
-                    </div>
-
-                </div>
+<div class="container text-center" style="color: white; padding-top: 100px;">
+    <h1 style="color: #d4af37;">Welcome to the Premium Club!</h1>
+    <p>As a Premium member, you now have access to exclusive features and discounts.</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div style="background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; padding: 20px; border-radius: 10px;">
+                <h3>-15% Discount</h3>
+                <p>Applied to every reservation.</p>
             </div>
-            <div class="container story mt-5">
-
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h2 class="story-title">THE STORY BEHIND EVERY MEAL</h2>
-                    </div>
-                </div>
-
-                <div class="row align-items-center mt-4">
-
-
-                    <div class="col-12 col-lg-6 story-img text-center">
-                        <img src="{{ asset('images/fooldal3.png') }}" alt="Story image">
-                    </div>
-
-
-                    <div class="col-12 col-lg-6 story-text">
-                        <p>Fit’s Good is a contemporary restaurant founded by food enthusiasts who believed that healthy
-                            cuisine can be both elegant and genuinely enjoyable.</p>
-
-                        <hr class="story-divider">
-
-                        <p>Their mission is simple: to create dishes from fresh, high-quality ingredients that are not only
-                            nourishing but also offer a memorable dining experience. Over time, Fit’s Good has become a
-                            refined, slightly upscale spot where mindful eating meets exceptional flavor—without compromise.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
-    </body>
-
+        </div>
+</div>
 @endsection
