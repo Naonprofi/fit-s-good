@@ -4,8 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div class="card" style="background-color: rgb(110, 129, 110)">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>{{ __('Reset password') }}</span>
+
+                        <a href="{{ route('welcome') }}" class="btn">
+                            &larr; {{ __('Back to Home') }}
+                        </a>
+                    </div>
 
                 <div class="card-body">
                     @if (session('status'))

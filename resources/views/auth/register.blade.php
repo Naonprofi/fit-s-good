@@ -5,7 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" style="background-color: rgb(110, 129, 110)">
-                    <div class="card-header">{{ __('Register to our website') }}</div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>{{ __('Register to our website') }}</span>
+
+                        <a href="{{ route('welcome') }}" class="btn">
+                            &larr; {{ __('Back to Home') }}
+                        </a>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -42,16 +48,15 @@
                                 </div>
                             </div>
 
-                            {{-- Nem (Gender) --}}
                             <div class="row mb-3">
                                 <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
                                 <div class="col-md-6">
                                     <select id="gender" class="form-select @error('gender') is-invalid @enderror"
                                         name="gender" required>
-                                        <option value="" disabled selected>Válassz nemet...</option>
-                                        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Férfi</option>
-                                        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Nő</option>
-                                        <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>Egyéb</option>
+                                        <option value="" disabled selected>Select gender...</option>
+                                        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                        <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>Other</option>
                                     </select>
                                     @error('gender')
                                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -113,7 +118,8 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button style="background-color: rgb(39, 76, 39); color: white;" type="submit" class="btn">
+                                    <button style="background-color: rgb(39, 76, 39); color: white;" type="submit"
+                                        class="btn">
                                         {{ __('Register') }}
                                     </button>
                                 </div>

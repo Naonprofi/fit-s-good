@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 Route::resource('/cust-contact', CustContactController::class);
 Route::resource('/cust-data', CustDataController::class);
 Route::resource('/cust-membership', CustMembershipController::class);
@@ -28,6 +28,7 @@ Route::resource('/worker-job', WorkerJobTitleController::class);
 Route::resource('/worker-schedule', WorkerScheduleController::class);
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [CustomerController::class, 'show'])->name('profile');
 Route::get('/profile/edit', [CustomerController::class, 'edit'])->name('profile.edit');
@@ -38,11 +39,8 @@ Route::get('/contacts', function () {
     return view('contacts');})->name('contacts');
     Route::get('/reservations', function () {
     return view('customers.reservations');})->name('reservations');
-// Ezt a gombot hívod meg a dropdown menüben
 Route::get('/membership', [CustMembershipController::class, 'index'])->name('membership');
 
-// Ez a fizetési oldal
 Route::get('/membership/upgrade', [CustMembershipController::class, 'upgrade'])->name('membership.upgrade');
 
-// Ez pedig a tényleges adatbázis módosítás (POST)
 Route::post('/membership/finish', [CustMembershipController::class, 'finishPayment'])->name('membership.finish');

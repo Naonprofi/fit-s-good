@@ -57,8 +57,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('home', Auth::user()->id) }}">
-                                    {{ __('Home') }}
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -70,9 +70,7 @@
                                     @csrf
                                 </form>
 
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
-                                </a>
+                                
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -102,7 +100,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" style="background-color: rgb(110, 129, 110); color: gainsboro;">
-                    <div class="card-header">{{ __('Here is your profile') }}</div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>{{ __('Here is your profile') }}</span>
+
+                        <a href="{{ route('welcome') }}" class="btn" style="color: gainsboro">
+                            &larr; {{ __('Back to Home') }}
+                        </a>
+                    </div>
                     <div class="card-body">
                         <p><strong>Name:</strong> {{ $customer->custData->cust_name ?? 'N/A' }}</p>
                         <p><strong>Email:</strong> {{ $customer->custContact->cust_email ?? 'N/A' }}</p>
