@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->date('date');
-            $table->integer('period');
+            $table->string('period');
             $table->integer('guests');
             $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
             $table->timestamps();

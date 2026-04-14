@@ -13,8 +13,8 @@
                 <div class="left-nav">
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
-                            <h1>Reserve a table</h1>
-                            <p>Fill in the details below to reserve a table at Fit's Good.</p>
+                            <h1>Premium Membership</h1>
+                            <p>Enjoy exclusive benefits and features with our Premium membership plan.</p>
                         </div>
                     </div>
                 </div>
@@ -59,6 +59,9 @@
                                 <a class="dropdown-item" href="{{ route('home', Auth::user()->id) }}">
                                     {{ __('Home') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                                                                                                                                  document.getElementById('logout-form').submit();">
@@ -69,9 +72,7 @@
                                     @csrf
                                 </form>
 
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
-                                </a>
+                                
                             </div>
                         </li>
                         <li class="nav-item dropdown">

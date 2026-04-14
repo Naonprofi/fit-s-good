@@ -119,7 +119,7 @@
                         <div class="food-card">
                             <img src="{{ asset('images/fooldal1.png') }}" class="img-fluid w-75 rounded-4"
                                 alt="Healthy food plate">
-                            <span class="food-text">juhtúrós-sajtos sült brokkoli</span>
+                            <span class="food-text">Baked broccoli with goat cheese</span>
                         </div>
                     </div>
 
@@ -127,8 +127,8 @@
                         <div class="food-card">
                             <img src="{{ asset('images/fooldal2.png') }}" class="img-fluid w-75 rounded-4"
                                 alt="Charcuterie board">
-                            <span class="food-text">grillezett csirkemellfilé bulgurral, párolt spárgával és
-                                brokkolival</span>
+                            <span class="food-text">Grilled chicken with bulgur, asparagus and
+                                broccoli</span>
                         </div>
                     </div>
 
@@ -160,6 +160,7 @@
                             nourishing but also offer a memorable dining experience. Over time, Fit’s Good has become a
                             refined, slightly upscale spot where mindful eating meets exceptional flavor—without compromise.
                         </p>
+                        <a href="{{ route('reservations') }}" class="menu-btn">Make a Reservation →</a>
                     </div>
 
                 </div>

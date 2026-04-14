@@ -63,6 +63,9 @@
                                 <a class="dropdown-item" href="{{ route('home', Auth::user()->id) }}">
                                     {{ __('Home') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                                                                                          document.getElementById('logout-form').submit();">
@@ -73,9 +76,7 @@
                                     @csrf
                                 </form>
 
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
-                                </a>
+                                
                             </div>
                         </li>
                         <li class="nav-item dropdown">

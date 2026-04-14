@@ -20,7 +20,7 @@ class ReservationFactory extends Factory
         return [
             'customer_id' => Customer::factory(),
             'date' => fake()->date(),
-            'period' => fake()->numberBetween(1,4),
+            'period' => fake()->randomElement(['12:00', '14:00', '16:00', '18:00']),
             'guests' => fake()->numberBetween(1,6)
         ];
     }

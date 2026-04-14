@@ -59,9 +59,12 @@
                                 <a class="dropdown-item" href="{{ route('home', Auth::user()->id) }}">
                                     {{ __('Home') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -69,9 +72,7 @@
                                     @csrf
                                 </form>
 
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
-                                </a>
+                                
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -98,54 +99,62 @@
 @endsection
 
 @section('content')
-    <div style="display: flex; justify-content: center; width: 100%;">
-        <p style="margin-top: 20px; font-size: 1.5rem; color: #afafaf; text-align: center; width: 500px; line-height: 1.6;">
-            For groups of more than 10 people or special events, please contact us at <br>
-            <a href="mailto:info@fitsgood.com" style="color: rgb(30, 193, 30); text-decoration: none;">info@fitsgood.com</a>
-            <br>
-            or call us at
-            <a href="tel:+1234567890" style="color: rgb(30, 193, 30); text-decoration: none;">+1 (234) 567-890</a>.
-        </p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card" style="background-color: rgb(110, 129, 110); color: white; border-radius: 15px;">
+                    <div class="card-header text-center">
+                        <h3 style="color: rgb(0, 0, 0);">{{ __('Table Reservation') }}</h3>
+                    </div>
+
+                    <div class="card-body">
+                        @if($activeReservation)
+                            <div class="reservation-info text-center p-4">
+                                <div style="font-size: 40px; margin-bottom: 10px;">📅</div>
+                                <h4 style="color: #f8f9fa;">You have an active reservation!</h4>
+                                
+                                <div class="mt-4 p-3"
+                                    style="background: rgba(0,0,0,0.2); border-radius: 10px; border-left: 5px solid #fff;">
+                                    <p><strong>Date:</strong> {{ $activeReservation->date }}</p>
+                                    <p><strong>Time:</strong> {{ $activeReservation->period }}</p>
+                                    <p><strong>Number of Guests:</strong> {{ $activeReservation->guests }} people</p>
+                                    <p><strong>Expected Departure:</strong>
+                                        {{ \Carbon\Carbon::parse($activeReservation->period)->addHours(2)->format('H:i') }}</p>
+                                </div>
+
+                            </div>
+                        @else
+                            <form method="POST" action="{{ route('reservations.store') }}">
+                                @csrf
+                                <div class="mb-3">
+                                    <label class="form-label">Dátum</label>
+                                    <input type="date" name="date" class="form-control" required min="{{ date('Y-m-d') }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Time (Start)</label>
+                                    <select name="period" class="form-control" required>
+                                        <option value="12:00">12:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="20:00">20:00</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Number of Guests</label>
+                                    <input type="number" name="guests" class="form-control" min="1" max="10" value="2" required>
+                                </div>
+
+                                <button type="submit" class="btn" style="font-weight: bold; background-color: rgb(39, 76, 39); color: white; align-items: center; display: flex; justify-content: center; width: 100%;">
+                                    Confirm Reservation
+                                </button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <section class="reservation-section"
-        style="max-width: 500px; margin: 50px auto; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); font-family: 'Playfair Display', serif; color: white;">
-
-        <h2
-            style="text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #afafaf; display: block; padding-bottom: 15px; margin-bottom: 30px;">
-            Table Reservation
-        </h2>
-
-        <form action="{{ route('reservations.store') }}" method="POST">
-            @csrf
-
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; color: #afafaf;">Date of Visit</label>
-                <input type="date" name="date" required min="{{ date('Y-m-d') }}"
-                    style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; color: #afafaf;">Select Time (Hourly)</label>
-                <select name="period" required
-                    style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
-                    <option value="" disabled selected>Choose an hour...</option>
-                    @for ($hour = 6; $hour <= 19; $hour++)
-                        <option value="{{ $hour }}">{{ sprintf('%02d:00', $hour) }}</option>
-                    @endfor
-                </select>
-                <small style="color: #888; display: block; margin-top: 5px;">We are open from 06:00 to 20:00</small>
-            </div>
-
-            <div style="margin-bottom: 30px;">
-                <label style="display: block; margin-bottom: 8px; color: #afafaf;">Number of Guests</label>
-                <input type="number" name="guests" min="1" max="12" required
-                    style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
-            </div>
-
-            <button type="submit"
-                style="width: 100%; padding: 15px; background-color:rgb(16, 94, 16); color: gainsboro; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-transform: uppercase;">
-                Confirm Reservation
-            </button>
-        </form>
-    </section>
 @endsection
