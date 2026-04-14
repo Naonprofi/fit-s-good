@@ -64,7 +64,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -72,7 +72,7 @@
                                     @csrf
                                 </form>
 
-                                
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -112,7 +112,7 @@
                             <div class="reservation-info text-center p-4">
                                 <div style="font-size: 40px; margin-bottom: 10px;">📅</div>
                                 <h4 style="color: #f8f9fa;">You have an active reservation!</h4>
-                                
+
                                 <div class="mt-4 p-3"
                                     style="background: rgba(0,0,0,0.2); border-radius: 10px; border-left: 5px solid #fff;">
                                     <p><strong>Date:</strong> {{ $activeReservation->date }}</p>
@@ -120,6 +120,7 @@
                                     <p><strong>Number of Guests:</strong> {{ $activeReservation->guests }} people</p>
                                     <p><strong>Expected Departure:</strong>
                                         {{ \Carbon\Carbon::parse($activeReservation->period)->addHours(2)->format('H:i') }}</p>
+                                    <p>We can only modify the number of guests for an active reservation. For this or to cancel the reservation, please contact us.</p>
                                 </div>
 
                             </div>
@@ -147,7 +148,8 @@
                                     <input type="number" name="guests" class="form-control" min="1" max="10" value="2" required>
                                 </div>
 
-                                <button type="submit" class="btn" style="font-weight: bold; background-color: rgb(39, 76, 39); color: white; align-items: center; display: flex; justify-content: center; width: 100%;">
+                                <button type="submit" class="btn"
+                                    style="font-weight: bold; background-color: rgb(39, 76, 39); color: white; align-items: center; display: flex; justify-content: center; width: 100%;">
                                     Confirm Reservation
                                 </button>
                             </form>

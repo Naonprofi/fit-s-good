@@ -11,25 +11,21 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index()
+    {
+        $res = Reservation::with([
+            'customer.custData',
+            'customer.custContact',
+            'customer.custMembership',
+        ])->get();
+
+        return response()->json($res);
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'date' => 'required|date|after_or_equal:today',
-            'period' => 'required|integer|min:6|max:20',
-            'guests' => 'required|integer|min:1|max:12',
-        ]);
-
-        $validated['customer_id'] = auth()->id();
-
-        Reservation::create($validated);
-
-        return redirect()->back()->with('success', 'Asztalfoglalásod rögzítettük!');
-    }
+    public function store(Request $request) {}
 
     /**
      * Display the specified resource.
@@ -39,10 +35,30 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {}
+    public function update(Request $request, $id)
+    {
+        $res = Reservation::find($id);
+        if ($res) {
+            $res->update(['guests' => $request->guests]);
+
+            return response()->json(['msg' => 'Successful update']);
+        }
+
+        return response()->json(['msg' => 'Didnt find'], 404);
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) {}
+    public function destroy($id)
+    {
+        $res = Reservation::find($id);
+        if ($res) {
+            $res->delete();
+
+            return response()->json(['msg' => 'Deleted']);
+        }
+
+        return response()->json(['msg' => 'Error'], 404);
+    }
 }
