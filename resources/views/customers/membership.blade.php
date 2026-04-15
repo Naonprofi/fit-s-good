@@ -114,9 +114,9 @@
                 <h2 style="text-transform: uppercase; color: #afafaf;">Basic Plan</h2>
                 <div style="font-size: 2rem; margin: 20px 0;">FREE</div>
                 <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
-                    <li>✅ Table Reservation</li>
-                    <li>✅ View Digital Menu</li>
-                    <li>✅ Access to Basic Content</li>
+                    <li>Table Reservation</li>
+                    <li>View Digital Menu</li>
+                    <li>Access to Basic Content</li>
                 </ul>
                 @if(!auth()->user()->is_premium)
                     <button disabled
@@ -135,9 +135,9 @@
                 @else
                     <div style="font-size: 2rem; margin: 20px 0;">$19.99</div>
                     <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
-                        <li>✨ Exclusive Recipes</li>
-                        <li>✨ Dietary Consultation</li>
-                        <li>✨ Trainer Advice</li>
+                        <li>Exclusive Recipes</li>
+                        <li>Dietary Consultation</li>
+                        <li>Trainer Advice</li>
                     </ul>
                     @csrf
                     <div style="text-align: center; margin-top: 30px;">

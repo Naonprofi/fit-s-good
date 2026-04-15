@@ -112,14 +112,14 @@
 
                     <div class="col-lg-2 d-flex flex-column">
                         <h1 class="hero-title">healthy, delicious and fit in one place</h1>
-                        <a href="{{ route('menu') }}" class="menu-btn">Check our MENU →</a>
+                        <a  href="{{ route('menu') }}" class="menu-btn">Check our MENU →</a>
                     </div>
 
                     <div class="col-lg-5 d-flex justify-content-center">
                         <div class="food-card">
                             <img src="{{ asset('images/fooldal1.png') }}" class="img-fluid w-75 rounded-4"
                                 alt="Healthy food plate">
-                            <span class="food-text">Baked broccoli with goat cheese</span>
+                            <span class="food-text">Broccoli with sour cream and cheese, oven-baked (V)</span>
                         </div>
                     </div>
 

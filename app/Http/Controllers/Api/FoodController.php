@@ -57,16 +57,13 @@ class FoodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFoodRequest $request, $id) // ID-t várjon!
+    public function update(UpdateFoodRequest $request, $id)
     {
-        // ID alapján keressünk!
         $food = Food::find($id);
 
         if (! $food) {
             return response()->json(['msg' => 'Error: No such ID in the database: '.$id], 404);
         }
-
-        // Csak a validált adatokat frissítsük!
         $food->update($request->validated());
 
         return response()->json([
@@ -80,7 +77,7 @@ class FoodController extends Controller
      */
     public function destroy($id)
     {
-        $food = Food::find($id); // ID alapján keress!
+        $food = Food::find($id);
         if ($food) {
             $food->delete();
 

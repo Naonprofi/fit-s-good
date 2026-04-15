@@ -66,7 +66,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -74,7 +74,7 @@
                                     @csrf
                                 </form>
 
-                                
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -101,21 +101,16 @@
 @endsection
 @section('content')
     <style>
-        /* Alapértelmezett (Mobil) nézet */
         .menu-grid {
             display: flex;
             flex-direction: column;
-            /* Egymás alá rakja őket */
             gap: 40px;
-            /* Távolság az egymás alatti elemek között */
             margin-top: 30px;
         }
 
         .menu-container {
             color: white;
-            /* Fehér szöveg mindenhol */
             max-width: 1000px;
-            /* Kicsit szélesebbre vettem, hogy PC-n kényelmesebb legyen */
             margin: 0 auto;
             text-align: center;
             font-family: 'Playfair Display', serif;
@@ -125,25 +120,20 @@
         .menu-item img {
             width: 100%;
             max-width: 400px;
-            /* Ne legyen túl óriási a kép mobilon sem */
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* PC / Tablet nézet (768px felett) */
         @media (min-width: 768px) {
             .menu-grid {
                 flex-direction: row;
-                /* Egymás mellé rakja őket */
                 justify-content: center;
                 gap: 80px;
-                /* Itt állíthatod, milyen messze legyenek egymástól PC-n */
             }
 
             .menu-item {
                 flex: 1;
                 max-width: 45%;
-                /* Biztosítja, hogy ne érjenek össze */
             }
         }
     </style>
@@ -215,14 +205,14 @@
 
                 <a href="{{ route('menu') }}"
                     style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s;
-                   {{ !$currentCategory ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
+                       {{ !$currentCategory ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
                     All
                 </a>
 
                 @foreach($categories as $id => $name)
                     <a href="{{ route('menu', ['category_id' => $id]) }}"
                         style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s;
-                                   {{ $currentCategory == $id ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
+                                           {{ $currentCategory == $id ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
                         {{ $name }}
                     </a>
                 @endforeach

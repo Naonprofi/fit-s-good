@@ -126,7 +126,7 @@
 
                     <button onclick="alert('Ask our co-workers, they know everything!')"
                         style="margin-top: auto; background: none; border: 1px solid #d4af37; color: #d4af37; padding: 5px 15px; cursor: pointer; align-self: center;">
-                        Book a session
+                        Ask a question
                     </button>
                 </div>
 
@@ -147,16 +147,16 @@
             <div id="hidden-recipe-section" <div
                 style="text-align: left; max-width: 800px; margin: 0 auto; color: #f0f0f0; display: none;">
                 <h3
-                    style="color: #d4af37; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-top: 30px; text-align: center;">
+                    style="color: #d4af37; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-top: 30px; text-align: center; margin-bottom: 30px;">
                     Premium Dessert Collection
                 </h3>
 
-                <div style="margin-bottom: 40px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px;">
+                <div style="margin-bottom: 40px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px;" >
                     <h4 style="color: #d4af37;">1. Somlói Trifle Cubes (Somlói kocka)</h4>
                     <p style="font-size: 0.8rem; color: #afafaf;">Nutritional info per serving: 160 kcal | 5g Protein | 26g
                         Carbs | 3g Fat</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 250px;">
+                        <div style="flex: 1; min-width: 200px;">
                             <strong style="color: #d4af37;">Ingredients:</strong>
                             <ul style="font-size: 0.9rem; list-style-type: square;">
                                 <li>3 types of sponge cake (plain, cocoa, walnut)</li>
@@ -166,7 +166,7 @@
                                 <li>Whipped cream for topping</li>
                             </ul>
                         </div>
-                        <div style="flex: 2; min-width: 300px;">
+                        <div style="flex: 2; min-width: 200px;">
                             <strong style="color: #d4af37;">Instructions:</strong>
                             <ol style="font-size: 0.9rem;">
                                 <li>Layer the different sponge cakes in a deep dish.</li>
@@ -184,7 +184,7 @@
                     <p style="font-size: 0.8rem; color: #afafaf;">Nutritional info per serving: 237 kcal | 7g Protein | 19g
                         Carbs | 14g Fat</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 250px;">
+                        <div style="flex: 1; min-width: 200px;">
                             <strong style="color: #d4af37;">Ingredients:</strong>
                             <ul style="font-size: 0.9rem; list-style-type: square;">
                                 <li>500g flour, 250g butter, 2 yolks</li>
@@ -193,7 +193,7 @@
                                 <li>Breadcrumbs (to absorb juice)</li>
                             </ul>
                         </div>
-                        <div style="flex: 2; min-width: 300px;">
+                        <div style="flex: 2; min-width: 200px;">
                             <strong style="color: #d4af37;">Instructions:</strong>
                             <ol style="font-size: 0.9rem;">
                                 <li>Knead the dough and divide it into two parts. Roll out the bottom layer.</li>
@@ -211,7 +211,7 @@
                     <p style="font-size: 0.8rem; color: #afafaf;">Nutritional info per serving: 488 kcal | 13g Protein | 39g
                         Carbs | 30g Fat</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 250px;">
+                        <div style="flex: 1; min-width: 200px;">
                             <strong style="color: #d4af37;">Ingredients:</strong>
                             <ul style="font-size: 0.9rem; list-style-type: square;">
                                 <li>300g flour, 200g butter, 100g ground walnuts</li>
@@ -220,7 +220,7 @@
                                 <li>200g dark chocolate for glazing</li>
                             </ul>
                         </div>
-                        <div style="flex: 2; min-width: 300px;">
+                        <div style="flex: 2; min-width: 200px;">
                             <strong style="color: #d4af37;">Instructions:</strong>
                             <ol style="font-size: 0.9rem;">
                                 <li>Make a shortcrust pastry from flour, butter, nuts, and sugar. Chill for 1 hour.</li>
@@ -237,7 +237,7 @@
                     <p style="font-size: 0.8rem; color: #afafaf;">Nutritional info per serving: 116 kcal | 4g Protein | 6g
                         Carbs | 8g Fat</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
-                        <div style="flex: 1; min-width: 250px;">
+                        <div style="flex: 1; min-width: 200px;">
                             <strong style="color: #d4af37;">Ingredients:</strong>
                             <ul style="font-size: 0.9rem; list-style-type: square;">
                                 <li>For the base: 4 eggs, 4 tbsp sugar, 4 tbsp flour, 1/2 tsp baking powder</li>
@@ -246,7 +246,7 @@
                                 <li>Topping: 300g fresh redcurrants, 1 pack of red cake glaze (gelatin)</li>
                             </ul>
                         </div>
-                        <div style="flex: 2; min-width: 300px;">
+                        <div style="flex: 2; min-width:0 300px;">
                             <strong style="color: #d4af37;">Instructions:</strong>
                             <ol style="font-size: 0.9rem;">
                                 <li>Whisk eggs with sugar until fluffy, fold in flour and baking powder. Bake the sponge at
@@ -266,7 +266,7 @@
                     <p style="font-size: 0.8rem; color: #afafaf;">Nutritional info per serving: 247 kcal | 4g Protein | 13g
                         Carbs | 20g Fat</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
-                        <div style="flex: 1; min-width: 250px;">
+                        <div style="flex: 1; min-width: 200px;">
                             <strong style="color: #d4af37;">Ingredients:</strong>
                             <ul style="font-size: 0.9rem; list-style-type: square;">
                                 <li>For the dough: 2 cups flour, 1 cup sugar, 2 tbsp cocoa powder, 1 cup milk, 1 egg</li>
@@ -274,7 +274,7 @@
                                 <li>Glaze: 100g dark chocolate, 2 tbsp oil</li>
                             </ul>
                         </div>
-                        <div style="flex: 2; min-width: 300px;">
+                        <div style="flex: 2; min-width: 200px;">
                             <strong style="color: #d4af37;">Instructions:</strong>
                             <ol style="font-size: 0.9rem;">
                                 <li>Mix the dough ingredients and bake in a medium tray at 170°C. Once cooled, cut the cake

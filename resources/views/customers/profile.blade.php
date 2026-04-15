@@ -14,8 +14,7 @@
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
                             <h1>Welcome to Fit's Good!</h1>
-                            <p>Your best friend in eating healthy without losing flavour. Track your macros and
-                                achieve your fitness goals with ease.</p>
+                            <p>You can view and update your profile information here.</p>
                         </div>
                     </div>
                 </div>

@@ -13,8 +13,8 @@
                 <div class="left-nav">
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
-                            <h1>Memberships</h1>
-                            <p>Choose the perfect membership plan for your fitness journey.</p>
+                            <h1>Premium</h1>
+                            <p>Pay for exclusive features like premium workout plans and personalized nutrition guidance.</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -72,7 +72,7 @@
                                     @csrf
                                 </form>
 
-                                
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -108,13 +108,10 @@
             <div id="payment-area">
                 <div class="card-header d-flex justify-content-end align-items-right">
 
-                        <a style="color: white" href="{{ route('welcome') }}" class="btn">
-                            &larr; {{ __('Back to Home') }}
-                        </a>
-                    </div>
+                </div>
                 <h2 style="text-align: center; text-transform: uppercase; margin-bottom: 5px;">Upgrade to Premium</h2>
 
-                <p style="text-align: center; margin-bottom: 30px;">Amount: $19.99</p>
+                <p style="text-align: center; margin-bottom: 30px;">Amount: $5.00</p>
 
                 <form id="payment-form">
 
@@ -179,13 +176,9 @@
             btn.disabled = true;
             btn.innerText = "Processing...";
 
-            // 1. Szimuláljuk a banki feldolgozást
             setTimeout(() => {
-                // 2. Vizuális visszajelzés a usernek
                 document.getElementById('payment-area').style.display = 'none';
                 document.getElementById('success-area').style.display = 'block';
-
-                // 3. Beküldjük a rejtett formot a Controllernek, hogy írja át az adatbázist
                 setTimeout(() => {
                     document.getElementById('hidden-finish-form').submit();
                 }, 1000);

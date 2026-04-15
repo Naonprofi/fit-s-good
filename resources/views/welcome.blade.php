@@ -119,7 +119,7 @@
                         <div class="food-card">
                             <img src="{{ asset('images/fooldal1.png') }}" class="img-fluid w-75 rounded-4"
                                 alt="Healthy food plate">
-                            <span class="food-text">Baked broccoli with goat cheese</span>
+                            <span class="food-text">Broccoli with sour cream and cheese, oven-baked (V)</span>
                         </div>
                     </div>
 
@@ -160,6 +160,7 @@
                             nourishing but also offer a memorable dining experience. Over time, Fit’s Good has become a
                             refined, slightly upscale spot where mindful eating meets exceptional flavor—without compromise.
                         </p>
+                        <a href="{{ route('reservations') }}" class="menu-btn">Make a Reservation →</a>
                     </div>
 
                 </div>
