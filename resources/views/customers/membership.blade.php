@@ -133,7 +133,7 @@
                     <div style="font-size: 1.2rem; color: #d4af37; margin: 20px 0; font-weight: bold;">★ PREMIUM ACTIVE ★</div>
                     <p style="color: #afafaf;">Scroll down to access your exclusive content.</p>
                 @else
-                    <div style="font-size: 2rem; margin: 20px 0;">$19.99</div>
+                    <div style="font-size: 2rem; margin: 20px 0;">$5.00</div>
                     <ul style="list-style: none; padding: 0; text-align: left; margin: 30px 0; line-height: 2;">
                         <li>Exclusive Recipes</li>
                         <li>Dietary Consultation</li>
