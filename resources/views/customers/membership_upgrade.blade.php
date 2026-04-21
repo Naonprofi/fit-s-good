@@ -14,7 +14,8 @@
                     <div class="navbar-nav me-auto">
                         <div class="welcome-text">
                             <h1>Premium</h1>
-                            <p>Pay for exclusive features like premium workout plans and personalized nutrition guidance.</p>
+                            <p>Pay for exclusive features like premium workout plans and personalized nutrition guidance.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -124,6 +125,7 @@
                     <div style="margin-bottom: 15px;">
                         <label style="display: block; font-size: 0.8rem; margin-bottom: 5px;">CARD NUMBER</label>
                         <input type="text" id="number" placeholder="1234 5678 9101 1121" maxlength="16" required
+                            pattern="\d{13,16}" inputmode="numeric"
                             style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
                     </div>
 
@@ -131,11 +133,13 @@
                         <div style="flex: 1;">
                             <label style="display: block; font-size: 0.8rem; margin-bottom: 5px;">EXPIRY</label>
                             <input type="text" id="exp" placeholder="MM/YY" maxlength="5" required
+                                pattern="\d{2}/\d{2}" placeholder="MM/YY"
                                 style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
                         </div>
                         <div style="flex: 1;">
                             <label style="display: block; font-size: 0.8rem; margin-bottom: 5px;">CVC</label>
                             <input type="text" id="cvc" placeholder="123" maxlength="3" required
+                                pattern="\d{3,4}" inputmode="numeric"
                                 style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;">
                         </div>
                     </div>
@@ -153,7 +157,8 @@
                 <p style="color: #dfdfdf; margin-bottom: 20px;">Updating your account...</p>
             </div>
 
-            <form id="hidden-finish-form" action="{{ route('membership.finish') }}" method="POST" style="display: none;">
+            <form id="hidden-finish-form" action="{{ route('membership.finish') }}" method="POST"
+                style="display: none;">
                 @csrf
             </form>
 
@@ -162,10 +167,59 @@
 
     <script>
         function startPayment() {
+            function validateCardNumber(number) {
+                let sum = 0;
+                let isSecond = false;
+                number = number.replace(/\s/g, '');
+
+                for (let i = number.length - 1; i >= 0; i--) {
+                    let d = parseInt(number[i]);
+                    if (isSecond) {
+                        d = d * 2;
+                        if (d > 9) d = d - 9;
+                    }
+                    sum += d;
+                    isSecond = !isSecond;
+                }
+                return (sum % 10 === 0) && number.length >= 13;
+            }
+
+            function validateExpiry(expiry) {
+                const parts = expiry.split('/');
+                if (parts.length !== 2) return false;
+
+                const month = parseInt(parts[0], 10);
+                const year = parseInt("20" + parts[1], 10);
+
+                const now = new Date();
+                const expiryDate = new Date(year, month - 1);
+
+                return month >= 1 && month <= 12 && expiryDate > now;
+            }
             const name = document.getElementById('holder').value;
             const num = document.getElementById('number').value;
             const exp = document.getElementById('exp').value;
             const cvc = document.getElementById('cvc').value;
+
+            if (holder.length < 5) {
+                alert("Write down the name on the card!");
+                return;
+            }
+
+            if (!validateCardNumber(number)) {
+                alert("Invalid card number!");
+                return;
+            }
+
+            if (!validateExpiry(exp)) {
+                alert("Invalid or expired date (MM/YY)!");
+                return;
+            }
+
+            if (cvc.length < 3) {
+                alert("Invalid CVC code!");
+                return;
+            }
 
             if (name === "" || num === "" || exp === "" || cvc === "") {
                 alert("Please fill in all card details!");

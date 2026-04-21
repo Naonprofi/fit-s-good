@@ -7,7 +7,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'FitGood') }}</title>
+    <title>{{ config('app.name', 'FitsGood') }}</title>
 
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -19,11 +19,11 @@
 
 <body style="background-color: rgb(20, 39, 29);"">
     <div id=" app">
-    @yield('navbar')
+        @yield('navbar')
 
-    <main class="py-4">
-        @yield('content')
-    </main>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
     <footer class="py-4 bg-dark text-white-50 text-center">
         <small>&copy; 2026 Fit's Good - Culinary & Fitness Experience</small>
