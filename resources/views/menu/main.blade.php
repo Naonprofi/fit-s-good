@@ -101,6 +101,10 @@
 @endsection
 @section('content')
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .menu-grid {
             display: flex;
             flex-direction: column;
@@ -134,6 +138,23 @@
             .menu-item {
                 flex: 1;
                 max-width: 45%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            table {
+                font-size: 0.85rem;
+            }
+
+            td:first-child {
+                min-width: 140px;
+                line-height: 1.2;
+                padding-right: 5px !important;
+            }
+
+            th,
+            td {
+                padding: 10px 5px !important;
             }
         }
     </style>
@@ -179,7 +200,8 @@
                 </div>
                 <div class="menu-item">
                     <img src="{{ asset('images/lecso.jpg') }}" alt="Chef's Choice 2">
-                    <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Baked chicken breast with Lecsó sided
+                    <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Baked chicken breast with Lecsó
+                        sided
                         with bulgur</p>
                     <p style="font-size: 16px; opacity: 0.9;">380kcal - 25g carbs - 30g protein - 10g fat</p>
                 </div>
@@ -198,26 +220,26 @@
                         2 => 'Dessert',
                         3 => 'Soup',
                         4 => 'Breakfast',
-                        5 => 'Drink'
+                        5 => 'Drink',
                     ];
                     $currentCategory = request('category_id');
                 @endphp
 
-                <a href="{{ route('menu') }}"
-                    style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s;
+                <a href="{{ route('menu') }}#menu-start"
+                    style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; width: 130px;
                        {{ !$currentCategory ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
                     All
                 </a>
 
-                @foreach($categories as $id => $name)
-                    <a href="{{ route('menu', ['category_id' => $id]) }}"
-                        style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s;
+                @foreach ($categories as $id => $name)
+                    <a href="{{ route('menu', ['category_id' => $id]) }}#menu-start"
+                        style="padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; width: 130px;
                                            {{ $currentCategory == $id ? 'background: #d4af37; color: black;' : 'border: 1px solid #d4af37; color: #d4af37;' }}">
                         {{ $name }}
                     </a>
                 @endforeach
             </div>
-
+            <div id="menu-start" style="display: block; height: 100px; margin-top: -100px;"></div>
             <div style="overflow-x: auto;">
                 <table
                     style="width: 100%; border-collapse: collapse; color: white; font-family: 'Playfair Display', serif; text-align: left;">
@@ -248,7 +270,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" style="padding: 30px; text-align: center; color: #888;">No items found in
+                                <td colspan="6" style="padding: 30px; text-align: center; color: #888;">No items found
+                                    in
                                     this category.</td>
                             </tr>
                         @endforelse
@@ -257,4 +280,23 @@
             </div>
         </section>
     </main>
+
+    <script>
+        if (window.location.hash) {
+            window.scrollTo(0, 0);
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.location.hash === "#menu-start") {
+                const element = document.getElementById("menu-start");
+                if (element) {
+                    setTimeout(() => {
+                        element.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 700);
+                }
+            }
+        });
+    </script>
 @endsection
