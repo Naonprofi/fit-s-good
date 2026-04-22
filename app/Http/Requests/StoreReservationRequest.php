@@ -22,6 +22,7 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'customer_id' => 'required|exists:customers,id',
             'date' => 'required|date|after_or_equal:today',
             'period' => 'required',
             'guests' => 'required|integer|min:1|max:10',
