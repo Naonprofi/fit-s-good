@@ -35,5 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
         });
         Route::post('/waiter/occupy', [WaiterController::class, 'occupyTable']);
         Route::get('/waiter/cart', [WaiterController::class, 'getActiveOrderItems']);
+        Route::get('/waiter/today-reservations', [ReservationController::class, 'todayReservationsSimple']);
     });
 });

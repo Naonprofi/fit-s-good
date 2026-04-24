@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Customer;
 use App\Models\Reservation;
+use App\Models\RestaurantTable;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -28,11 +29,10 @@ class ReservationController extends Controller
         $activeReservation = null;
 
         if ($lastReservation) {
-            $startDateTime = \Carbon\Carbon::parse($lastReservation->date.' '.$lastReservation->period, 'Europe/Budapest');
-
+            $startDateTime = Carbon::parse($lastReservation->period);
             $endDateTime = $startDateTime->copy()->addHours(2);
 
-            $now = \Carbon\Carbon::now('Europe/Budapest');
+            $now = Carbon::now('Europe/Budapest');
 
             if ($now->lessThan($endDateTime)) {
                 $activeReservation = $lastReservation;
@@ -57,22 +57,50 @@ class ReservationController extends Controller
     {
         $customer = Customer::where('user_id', Auth::id())->first();
 
-        $exists = Reservation::where('customer_id', $customer->id)
-            ->where('date', '>=', Carbon::today()->toDateString())
-            ->exists();
+        if (! $customer) {
+            return redirect()->back()->with('error', 'Customer not found!');
+        }
+        $start = Carbon::parse($request->date.' '.$request->period);
+        $end = (clone $start)->addHours(2);
 
-        if ($exists) {
-            return redirect()->back()->with('error', 'You already have an active reservation!');
+        $tables = RestaurantTable::where('capacity', '>=', $request->guests)
+            ->orderBy('capacity', 'asc')
+            ->get();
+
+        $suitableTable = null;
+
+        foreach ($tables as $table) {
+
+            $conflict = Reservation::where('table_id', $table->id)
+                ->where('date', $request->date)
+                ->where(function ($q) use ($start, $end) {
+                    $q->where('period', '<', $end)
+                        ->where('end_time', '>', $start);
+                })
+                ->exists();
+
+            if (! $conflict) {
+                $suitableTable = $table;
+                break;
+            }
+        }
+
+        if (! $suitableTable) {
+            return redirect()->back()->with('error', 'No available table for this time slot!');
         }
 
         Reservation::create([
             'customer_id' => $customer->id,
             'date' => $request->date,
-            'period' => $request->period,
+            'period' => $start,
+            'end_time' => $end,
             'guests' => $request->guests,
+            'table_id' => $suitableTable->id,
         ]);
 
-        return redirect()->route('reservations')->with('success', 'Table reserved successfully!');
+        return redirect()
+            ->route('reservations')
+            ->with('success', 'Table reserved successfully!');
     }
 
     /**

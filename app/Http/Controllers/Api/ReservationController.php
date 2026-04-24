@@ -24,18 +24,32 @@ class ReservationController extends Controller
         return response()->json($res);
     }
 
+    public function todayReservationsSimple()
+    {
+        return Reservation::with('customer')
+            ->whereDate('date', now())
+            ->get()
+            ->map(function ($r) {
+                return [
+                    'table_id' => $r->table_id,
+                    'time' => $r->period,
+                    'customer_name' => $r->customer->custData->cust_name ?? 'Guest',
+                ];
+            });
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $suitableTable = RestaurantTable::where('capacity', '>=', $request->guests)
+        $suitableTable = RestaurantTable::where('capacity', '=', $request->guests)
             ->where('status', 'free')
             ->orderBy('capacity', 'asc')
             ->first();
 
         if (! $suitableTable) {
-            return response()->json(['msg' => 'No suitable table found.'], 422);
+            return response()->json(['msg' => 'No table'], 422);
         }
 
         $reservation = Reservation::create([
@@ -72,13 +86,24 @@ class ReservationController extends Controller
     public function update(Request $request, $id)
     {
         $res = Reservation::find($id);
-        if ($res) {
-            $res->update(['guests' => $request->guests]);
 
-            return response()->json(['msg' => 'Successful update']);
+        if (! $res) {
+            return response()->json(['msg' => 'Not found'], 404);
         }
 
-        return response()->json(['msg' => 'Didnt find'], 404);
+        $res->guests = $request->guests;
+
+        $table = RestaurantTable::where('capacity', '>=', $request->guests)
+            ->orderBy('capacity', 'asc')
+            ->first();
+
+        if ($table) {
+            $res->table_id = $table->id;
+        }
+
+        $res->save();
+
+        return response()->json(['msg' => 'Updated', 'reservation' => $res]);
     }
 
     /**

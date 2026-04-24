@@ -16,7 +16,7 @@ class Reservation extends Model
     use SoftDeletes;
 
     #[UsePolicy(ReservationPolicy::class)]
-    protected $fillable = ['customer_id', 'date', 'period', 'guests', 'table_id'];
+    protected $fillable = ['customer_id', 'date', 'period', 'guests', 'table_id', 'end_time'];
 
     public function customer()
     {
