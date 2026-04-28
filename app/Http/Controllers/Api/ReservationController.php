@@ -33,6 +33,7 @@ class ReservationController extends Controller
                 return [
                     'table_id' => $r->table_id,
                     'time' => $r->period,
+                    'end_time' => $r->end_time,
                     'customer_name' => $r->customer->custData->cust_name ?? 'Guest',
                 ];
             });
